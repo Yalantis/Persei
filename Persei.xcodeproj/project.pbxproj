@@ -10,6 +10,7 @@
 		ADE974001A78F7AA0040B7C1 /* Persei.h in Headers */ = {isa = PBXBuildFile; fileRef = ADE973FF1A78F7AA0040B7C1 /* Persei.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
 		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
+		ADE974531A78F9ED0040B7C1 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974521A78F9ED0040B7C1 /* BarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		ADE974051A78F7AA0040B7C1 /* PerseiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerseiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE9740B1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerseiTests.swift; sourceTree = "<group>"; };
+		ADE974521A78F9ED0040B7C1 /* BarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				ADE973FF1A78F7AA0040B7C1 /* Persei.h */,
+				ADE974521A78F9ED0040B7C1 /* BarView.swift */,
 				ADE973FD1A78F7AA0040B7C1 /* Supporting Files */,
 			);
 			path = Persei;
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE974531A78F9ED0040B7C1 /* BarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +323,7 @@
 		ADE974111A78F7AA0040B7C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +333,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		ADE974121A78F7AA0040B7C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +402,7 @@
 				ADE974121A78F7AA0040B7C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADE974131A78F7AA0040B7C1 /* Build configuration list for PBXNativeTarget "PerseiTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +411,7 @@
 				ADE974151A78F7AA0040B7C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
