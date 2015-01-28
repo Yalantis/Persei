@@ -11,6 +11,8 @@
 		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
 		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
 		ADE974531A78F9ED0040B7C1 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974521A78F9ED0040B7C1 /* BarView.swift */; };
+		ADE974551A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */; };
+		ADE974571A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		ADE9740B1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerseiTests.swift; sourceTree = "<group>"; };
 		ADE974521A78F9ED0040B7C1 /* BarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Equatable.swift"; sourceTree = "<group>"; };
+		ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+NormalizedContentOffset.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 			children = (
 				ADE973FF1A78F7AA0040B7C1 /* Persei.h */,
 				ADE974521A78F9ED0040B7C1 /* BarView.swift */,
+				ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */,
+				ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */,
 				ADE973FD1A78F7AA0040B7C1 /* Supporting Files */,
 			);
 			path = Persei;
@@ -212,6 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE974571A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift in Sources */,
+				ADE974551A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift in Sources */,
 				ADE974531A78F9ED0040B7C1 /* BarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
