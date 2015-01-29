@@ -39,7 +39,7 @@ public class BarView: UIView {
     // MARK: - KVO
     public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &ContentOffsetContext {
-            didScroll(scrollView.contentOffset)
+            layoutToFit()
         } else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
@@ -61,19 +61,19 @@ public class BarView: UIView {
     }
     
     // MARK: - State
-    enum State {
+    public enum State {
         case Default, Revealed
     }
     
-    var state: State = .Default {
+    public private(set) var state: State = .Default {
         didSet {
             if oldValue != state {
                 switch state {
                 case .Default:
-                    self.addInsets()
+                    self.removeInsets()
                     
                 case .Revealed:
-                    self.removeInsets()
+                    self.addInsets()
                 }
             }
         }
@@ -81,27 +81,22 @@ public class BarView: UIView {
     
     // MARK: - Applyied Insets
     private var appliedInsets: UIEdgeInsets = UIEdgeInsetsZero
-    private var applyingInsets = false
     private var insetsApplied: Bool {
-        return !applyingInsets && appliedInsets != UIEdgeInsetsZero
+        return appliedInsets != UIEdgeInsetsZero
     }
 
     private func applyInsets(insets: UIEdgeInsets, animated: Bool) {
-        appliedInsets = insets
+        let originalInset = scrollView.contentInset - appliedInsets
+        let targetInset = originalInset + insets
+
+        self.appliedInsets = insets
         
         if animated {
-            applyingInsets = true
-            
-            let curve : UIViewAnimationOptions = scrollView.dragging ? .CurveEaseOut : .CurveEaseInOut
-            let options: UIViewAnimationOptions = .BeginFromCurrentState
-            
-            UIView.animateWithDuration(0.2, delay: 0.0, options: .BeginFromCurrentState | curve, animations: {
-                self.scrollView.contentInset = self.appliedInsets
-            }, completion: { completed in
-                self.applyingInsets = false
-            })
+            UIView.animateWithDuration(0.2) {
+                self.scrollView.contentInset = targetInset
+            }
         } else {
-            scrollView.contentInset = appliedInsets
+            scrollView.contentInset = targetInset
         }
     }
     
@@ -115,35 +110,75 @@ public class BarView: UIView {
         applyInsets(UIEdgeInsetsZero, animated: animated)
     }
     
+    // MARK: - Threshold
+    public var threshold: CGFloat = 0.5
+    
     // MARK: - Content Offset Hanlding
-    private func didScroll(var offset: CGPoint) {
-        offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + appliedInsets.top)
-        println(offset)
-        
-        frame = CGRect(x: 0.0, y: 0.0, width: CGRectGetWidth(scrollView.bounds), height: -64.0)
-    }
     
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
-        if applyingInsets {
-            return
-        }
-        
         switch recognizer.state {
         case .Ended:
+            let value = normalizedScrollViewOffset().y
+            let triggeringValue = CGRectGetHeight(bounds) * threshold
             
-            
-            let insetsApplied = appliedInsets != UIEdgeInsetsZero
-            let offset = scrollView.contentOffset
-            
-            if offset.y < 0.0 && !insetsApplied && scrollView.panGestureRecognizer.state != .Changed {
-                addInsets()
-            } else if insetsApplied {
-                removeInsets()
+            switch state {
+            case .Default:
+                if triggeringValue < value * -1.0 {
+                    state = .Revealed
+                }
+                
+            case .Revealed:
+                if triggeringValue < value {
+                    state = .Default
+                }
             }
             
         default:
             break
         }
     }
+    
+    // MARK: - Layout
+    private func layoutToFit() {
+        println("y: \(scrollView.contentOffset) ny: \(normalizedScrollViewOffset().y)")
+        
+
+        var origin: CGFloat = 0.0
+        switch state {
+        case .Default:
+            origin = appliedInsets.top + normalizedScrollViewOffset().y
+        case .Revealed:
+            origin = scrollView.contentOffset.y + appliedInsets.top
+        }
+    
+        frame.origin.y = origin
+        sizeToFit()
+    }
+    
+    private func normalizedScrollViewOffset() -> CGPoint {
+        let offset = scrollView.contentOffset
+        let inset = scrollView.contentInset
+        let output = CGPoint(x: offset.x + inset.left, y: offset.y + inset.top)
+
+        return output
+    }
+    
+    public override func sizeThatFits(size: CGSize) -> CGSize {
+        var height: CGFloat = 0.0
+        
+        switch state {
+        case .Default:
+            height = normalizedScrollViewOffset().y * -1.0
+            
+        case .Revealed:
+            height = appliedInsets.top - normalizedScrollViewOffset().y
+            break
+        }
+        
+        let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0.0))
+        
+        return output
+    }
+    
 }

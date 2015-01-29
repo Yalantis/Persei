@@ -16,8 +16,6 @@ public func == (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> Bool {
 }
 
 func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
-    var l: Int
-    
     return UIEdgeInsets(
         top: lhs.top + rhs.top,
         left: lhs.left + rhs.left,
