@@ -123,7 +123,7 @@ public class BarView: UIView {
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .Ended:
-            let value = normalizedScrollViewOffset().y
+            let value = scrollView.normalizedContentOffset.y
             let triggeringValue = CGRectGetHeight(bounds) * threshold
             
             switch state {
@@ -151,23 +151,15 @@ public class BarView: UIView {
         sizeToFit()
     }
     
-    private func normalizedScrollViewOffset() -> CGPoint {
-        let offset = scrollView.contentOffset
-        let inset = scrollView.contentInset
-        let output = CGPoint(x: offset.x + inset.left, y: offset.y + inset.top)
-        
-        return output
-    }
-    
     public override func sizeThatFits(_: CGSize) -> CGSize {
         var height: CGFloat = 0.0
         
         switch state {
         case .Default:
-            height = normalizedScrollViewOffset().y * -1.0
+            height = scrollView.normalizedContentOffset.y * -1.0
             
         case .Revealed:
-            height = appliedInsets.top - normalizedScrollViewOffset().y
+            height = appliedInsets.top - scrollView.normalizedContentOffset.y
             break
         }
         
@@ -175,5 +167,4 @@ public class BarView: UIView {
         
         return output
     }
-    
 }
