@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.contentInset.top = 64.0
+//        tableView.contentInset.top = 64.0
         
         let barView = BarView()
         barView.backgroundColor = UIColor.yellowColor()
