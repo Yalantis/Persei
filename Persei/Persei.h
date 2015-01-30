@@ -6,14 +6,10 @@
 //  Copyright (c) 2015 Yalantis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for Persei.
 FOUNDATION_EXPORT double PerseiVersionNumber;
 
 //! Project version string for Persei.
 FOUNDATION_EXPORT const unsigned char PerseiVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Persei/PublicHeader.h>
-
-

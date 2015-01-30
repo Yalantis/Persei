@@ -15,7 +15,7 @@ public func == (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> Bool {
     return UIEdgeInsetsEqualToEdgeInsets(lhs, rhs)
 }
 
-func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
+public func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
     return UIEdgeInsets(
         top: lhs.top + rhs.top,
         left: lhs.left + rhs.left,
@@ -24,7 +24,7 @@ func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
     )
 }
 
-func - (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
+public func - (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
     return UIEdgeInsets(
         top: lhs.top - rhs.top,
         left: lhs.left - rhs.left,
