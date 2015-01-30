@@ -43,10 +43,12 @@ public class StickHeaderView: UIView {
     }
 
     // MARK: - ContentView
-    var contentView: UIView? {
+    public var contentView: UIView? {
         didSet {
             oldValue?.removeFromSuperview()
             if let view = contentView {
+                view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+                
                 self.addSubview(view)
                 self.setNeedsLayout()
             }
@@ -71,7 +73,7 @@ public class StickHeaderView: UIView {
     // MARK: - KVO
     public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
         if context == &ContentOffsetContext {
-            layoutToFit()
+            didScroll()
         } else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
@@ -138,6 +140,17 @@ public class StickHeaderView: UIView {
     public var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
+    private func didScroll() {
+        layoutToFit()
+        
+        var transform = CATransform3DIdentity
+        transform.m34 = -1.0 / 500.0
+        let alpha = -acos(min(bounds.height, contentHeight) / contentHeight)
+        transform = CATransform3DRotate(transform, alpha, 1.0, 0.0, 0.0)
+        
+        contentView?.layer.transform = transform
+    }
+    
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .Ended {
@@ -157,9 +170,6 @@ public class StickHeaderView: UIView {
 
         backgroundImageView.frame = bounds
         contentView?.frame = CGRect(x: 0.0, y: 0.0, width: CGRectGetWidth(bounds), height: contentHeight)
-
-
-        var transform = CATransform3DIdentity
     }
 
     private func layoutToFit() {
