@@ -17,10 +17,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        tableView.contentInset.top = 64.0
+        tableView.contentInset.top = 64.0
         
         let barView = StickHeaderView()
-        barView.backgroundColor = UIColor.yellowColor()
+        let button = UIButton()
+        button.setTitle("Hello", forState: .Normal)
+        button.backgroundColor = UIColor.redColor()
+        barView.contentView = button
+        
+        barView.backgroundColor = UIColor.grayColor()
         tableView.addSubview(barView)
     }
 }

@@ -13,6 +13,26 @@ import QuartzCore
 private var ContentOffsetContext = 0
 
 public class StickHeaderView: UIView {
+    func commonInit() {
+        addSubview(backgroundImageView)
+        addSubview(contentContainer)
+        
+        clipsToBounds = true
+        
+        contentContainer.backgroundColor = UIColor.yellowColor()
+        contentContainer.layer.addSublayer(shadowLayer)
+    }
+    
+    // MARK: - Init
+    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
     
     // MARK: - View lifecycle
     public override func willMoveToSuperview(newSuperview: UIView?) {
@@ -25,33 +45,46 @@ public class StickHeaderView: UIView {
         
         if superview != nil {
             scrollView = superview as UIScrollView
+            scrollView.sendSubviewToBack(self)
         }
     }
 
-    // MARK: - Background Image
-    lazy private var backgroundImageView: UIImageView = { [unowned self] in
-        let imageView = UIImageView(frame: self.bounds)
-        self.addSubview(imageView)
-        return imageView
+    private let contentContainer: UIView = {
+        let view = UIView()
+        view.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+
+        return view
     }()
+    
+    private let shadowLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor(white: 0.0, alpha: 0.3).CGColor, UIColor.clearColor()]
+        layer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        layer.endPoint = CGPoint(x: 0.5, y: 0.0)
+    
+        return layer
+    }()
+    
+    @IBOutlet
+    public var contentView: UIView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            if let view = contentView {
+                view.frame = contentContainer.bounds
+                view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                contentContainer.addSubview(view)
+            }
+        }
+    }
+    
+    // MARK: - Background Image
+    private let backgroundImageView = UIImageView()
 
     @IBInspectable
     public var backgroundImage: UIImage? {
         didSet {
             backgroundImageView.image = backgroundImage
-        }
-    }
-
-    // MARK: - ContentView
-    public var contentView: UIView? {
-        didSet {
-            oldValue?.removeFromSuperview()
-            if let view = contentView {
-                view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-                
-                self.addSubview(view)
-                self.setNeedsLayout()
-            }
+            backgroundImageView.hidden = backgroundImage == nil
         }
     }
     
@@ -93,7 +126,7 @@ public class StickHeaderView: UIView {
     }
 
     private func fractionRevealed() -> CGFloat {
-        return CGRectGetHeight(bounds) / contentHeight
+        return min(CGRectGetHeight(bounds) / contentHeight, 1.0)
     }
 
     // MARK: - Applyied Insets
@@ -109,7 +142,7 @@ public class StickHeaderView: UIView {
         self.appliedInsets = insets
         
         if animated {
-            UIView.animateWithDuration(0.2) {
+            UIView.animateWithDuration(0.3) {
                 self.scrollView.contentInset = targetInset
             }
         } else {
@@ -142,13 +175,18 @@ public class StickHeaderView: UIView {
     // MARK: - Content Offset Hanlding
     private func didScroll() {
         layoutToFit()
+        layoutIfNeeded()
+        
+        CATransaction.setDisableActions(true)
+        shadowLayer.opacity = 1.0 - Float(fractionRevealed())
+        CATransaction.setDisableActions(false)
         
         var transform = CATransform3DIdentity
         transform.m34 = -1.0 / 500.0
-        let alpha = -acos(min(bounds.height, contentHeight) / contentHeight)
-        transform = CATransform3DRotate(transform, alpha, 1.0, 0.0, 0.0)
+        let angle = acos(min(bounds.height, contentHeight) / contentHeight)
+        transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
         
-        contentView?.layer.transform = transform
+        contentContainer.layer.transform = transform
     }
     
     @objc
@@ -169,7 +207,13 @@ public class StickHeaderView: UIView {
         super.layoutSubviews()
 
         backgroundImageView.frame = bounds
-        contentView?.frame = CGRect(x: 0.0, y: 0.0, width: CGRectGetWidth(bounds), height: contentHeight)
+        contentContainer.frame = CGRect(
+            x: 0.0,
+            y: min(CGRectGetHeight(bounds) - contentHeight, CGRectGetMidY(bounds) - contentHeight / 2.0),
+            width: CGRectGetWidth(bounds),
+            height: contentHeight
+        )
+        shadowLayer.frame = contentContainer.bounds
     }
 
     private func layoutToFit() {
@@ -188,7 +232,7 @@ public class StickHeaderView: UIView {
         }
 
         let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0.0))
-
+        
         return output
     }
 }
