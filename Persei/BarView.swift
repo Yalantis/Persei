@@ -14,7 +14,7 @@ private var ContentOffsetContext = 0
 public class BarView: UIView {
     
     // MARK: - Init
-    public override init(frame: CGRect = CGRect(x: 0.0, y: -64.0, width: 320.0, height: 64.0)) {
+    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
         super.init(frame: frame)
     }
     
@@ -36,15 +36,6 @@ public class BarView: UIView {
         }
     }
     
-    // MARK: - KVO
-    public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        if context == &ContentOffsetContext {
-            layoutToFit()
-        } else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-        }
-    }
-    
     // MARK: - ScrollView
     private weak var scrollView: UIScrollView! {
         willSet {
@@ -57,6 +48,15 @@ public class BarView: UIView {
         didSet {
             scrollView?.addObserver(self, forKeyPath: "contentOffset", options: .Initial | .New, context: &ContentOffsetContext)
             scrollView?.panGestureRecognizer.addTarget(self, action: "handlePan:")
+        }
+    }
+    
+    // MARK: - KVO
+    public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        if context == &ContentOffsetContext {
+            layoutToFit()
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
     }
     
@@ -102,7 +102,7 @@ public class BarView: UIView {
     
     private func addInsets(animated: Bool = true) {
         assert(!insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsets(top: 64.0, left: 0.0, bottom: 0.0, right: 0.0), animated: animated)
+        applyInsets(UIEdgeInsets(top: barHeigh, left: 0.0, bottom: 0.0, right: 0.0), animated: animated)
     }
 
     private func removeInsets(animated: Bool = true) {
@@ -110,11 +110,15 @@ public class BarView: UIView {
         applyInsets(UIEdgeInsetsZero, animated: animated)
     }
     
+    // MARK: - BarHeight
+    @IBInspectable
+    public var barHeigh: CGFloat = 64.0
+    
     // MARK: - Threshold
+    @IBInspectable
     public var threshold: CGFloat = 0.5
     
     // MARK: - Content Offset Hanlding
-    
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
@@ -141,18 +145,9 @@ public class BarView: UIView {
     
     // MARK: - Layout
     private func layoutToFit() {
-        println("y: \(scrollView.contentOffset) ny: \(normalizedScrollViewOffset().y)")
-        
-
-        var origin: CGFloat = 0.0
-        switch state {
-        case .Default:
-            origin = appliedInsets.top + normalizedScrollViewOffset().y
-        case .Revealed:
-            origin = scrollView.contentOffset.y + appliedInsets.top
-        }
-    
+        var origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
         frame.origin.y = origin
+        
         sizeToFit()
     }
     
@@ -160,11 +155,11 @@ public class BarView: UIView {
         let offset = scrollView.contentOffset
         let inset = scrollView.contentInset
         let output = CGPoint(x: offset.x + inset.left, y: offset.y + inset.top)
-
+        
         return output
     }
     
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    public override func sizeThatFits(_: CGSize) -> CGSize {
         var height: CGFloat = 0.0
         
         switch state {
