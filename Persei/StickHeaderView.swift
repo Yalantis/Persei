@@ -8,19 +8,11 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 private var ContentOffsetContext = 0
 
 public class StickHeaderView: UIView {
-    
-    // MARK: - Init
-    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
-        super.init(frame: frame)
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     // MARK: - View lifecycle
     public override func willMoveToSuperview(newSuperview: UIView?) {
@@ -33,6 +25,31 @@ public class StickHeaderView: UIView {
         
         if superview != nil {
             scrollView = superview as UIScrollView
+        }
+    }
+
+    // MARK: - Background Image
+    lazy private var backgroundImageView: UIImageView = { [unowned self] in
+        let imageView = UIImageView(frame: self.bounds)
+        self.addSubview(imageView)
+        return imageView
+    }()
+
+    @IBInspectable
+    public var backgroundImage: UIImage? {
+        didSet {
+            backgroundImageView.image = backgroundImage
+        }
+    }
+
+    // MARK: - ContentView
+    var contentView: UIView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+            if let view = contentView {
+                self.addSubview(view)
+                self.setNeedsLayout()
+            }
         }
     }
     
@@ -73,6 +90,10 @@ public class StickHeaderView: UIView {
         }
     }
 
+    private func fractionRevealed() -> CGFloat {
+        return CGRectGetHeight(bounds) / contentHeight
+    }
+
     // MARK: - Applyied Insets
     private var appliedInsets: UIEdgeInsets = UIEdgeInsetsZero
     private var insetsApplied: Bool {
@@ -96,7 +117,7 @@ public class StickHeaderView: UIView {
     
     private func addInsets(animated: Bool = true) {
         assert(!insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsets(top: barHeigh, left: 0.0, bottom: 0.0, right: 0.0), animated: animated)
+        applyInsets(UIEdgeInsets(top: contentHeight, left: 0.0, bottom: 0.0, right: 0.0), animated: animated)
     }
 
     private func removeInsets(animated: Bool = true) {
@@ -106,17 +127,21 @@ public class StickHeaderView: UIView {
     
     // MARK: - BarHeight
     @IBInspectable
-    public var barHeigh: CGFloat = 64.0
+    public var contentHeight: CGFloat = 64.0 {
+        didSet {
+            layoutToFit()
+        }
+    }
     
     // MARK: - Threshold
     @IBInspectable
-    public var threshold: CGFloat = 0.5
+    public var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .Ended {
-            let value = normalizedScrollViewOffset().y
+            let value = scrollView.normalizedContentOffset.y
             let triggeringValue = CGRectGetHeight(bounds) * threshold
             let multiplier: CGFloat = revealed ? 1.0 : -1.0
 
@@ -127,6 +152,16 @@ public class StickHeaderView: UIView {
     }
     
     // MARK: - Layout
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+
+        backgroundImageView.frame = bounds
+        contentView?.frame = CGRect(x: 0.0, y: 0.0, width: CGRectGetWidth(bounds), height: contentHeight)
+
+
+        var transform = CATransform3DIdentity
+    }
+
     private func layoutToFit() {
         var origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
         frame.origin.y = origin
@@ -134,20 +169,12 @@ public class StickHeaderView: UIView {
         sizeToFit()
     }
     
-    private func normalizedScrollViewOffset() -> CGPoint {
-        let offset = scrollView.contentOffset
-        let inset = scrollView.contentInset
-        let output = CGPoint(x: offset.x + inset.left, y: offset.y + inset.top)
-        
-        return output
-    }
-    
     public override func sizeThatFits(_: CGSize) -> CGSize {
         var height: CGFloat = 0.0
         if revealed {
-            height = appliedInsets.top - normalizedScrollViewOffset().y
+            height = appliedInsets.top - scrollView.normalizedContentOffset.y
         } else {
-            height = normalizedScrollViewOffset().y * -1.0
+            height = scrollView.normalizedContentOffset.y * -1.0
         }
 
         let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0.0))
