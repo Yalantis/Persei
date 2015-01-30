@@ -1,5 +1,5 @@
 //
-//  BarView.swift
+//  StickHeaderView.swift
 //  Persei
 //
 //  Created by zen on 28/01/15.
@@ -11,7 +11,7 @@ import UIKit
 
 private var ContentOffsetContext = 0
 
-public class BarView: UIView {
+public class StickHeaderView: UIView {
     
     // MARK: - Init
     public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
@@ -61,24 +61,18 @@ public class BarView: UIView {
     }
     
     // MARK: - State
-    public enum State {
-        case Default, Revealed
-    }
-    
-    public private(set) var state: State = .Default {
+    public private(set) var revealed: Bool = false {
         didSet {
-            if oldValue != state {
-                switch state {
-                case .Default:
-                    self.removeInsets()
-                    
-                case .Revealed:
+            if oldValue != revealed {
+                if revealed {
                     self.addInsets()
+                } else {
+                    self.removeInsets()
                 }
             }
         }
     }
-    
+
     // MARK: - Applyied Insets
     private var appliedInsets: UIEdgeInsets = UIEdgeInsetsZero
     private var insetsApplied: Bool {
@@ -121,25 +115,14 @@ public class BarView: UIView {
     // MARK: - Content Offset Hanlding
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
-        switch recognizer.state {
-        case .Ended:
-            let value = scrollView.normalizedContentOffset.y
+        if recognizer.state == .Ended {
+            let value = normalizedScrollViewOffset().y
             let triggeringValue = CGRectGetHeight(bounds) * threshold
-            
-            switch state {
-            case .Default:
-                if triggeringValue < value * -1.0 {
-                    state = .Revealed
-                }
-                
-            case .Revealed:
-                if triggeringValue < value {
-                    state = .Default
-                }
+            let multiplier: CGFloat = revealed ? 1.0 : -1.0
+
+            if triggeringValue < value * multiplier {
+                revealed = !revealed
             }
-            
-        default:
-            break
         }
     }
     
@@ -151,20 +134,24 @@ public class BarView: UIView {
         sizeToFit()
     }
     
+    private func normalizedScrollViewOffset() -> CGPoint {
+        let offset = scrollView.contentOffset
+        let inset = scrollView.contentInset
+        let output = CGPoint(x: offset.x + inset.left, y: offset.y + inset.top)
+        
+        return output
+    }
+    
     public override func sizeThatFits(_: CGSize) -> CGSize {
         var height: CGFloat = 0.0
-        
-        switch state {
-        case .Default:
-            height = scrollView.normalizedContentOffset.y * -1.0
-            
-        case .Revealed:
-            height = appliedInsets.top - scrollView.normalizedContentOffset.y
-            break
+        if revealed {
+            height = appliedInsets.top - normalizedScrollViewOffset().y
+        } else {
+            height = normalizedScrollViewOffset().y * -1.0
         }
-        
+
         let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0.0))
-        
+
         return output
     }
 }

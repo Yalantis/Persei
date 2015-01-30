@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
 //        tableView.contentInset.top = 64.0
         
-        let barView = BarView()
+        let barView = StickHeaderView()
         barView.backgroundColor = UIColor.yellowColor()
         tableView.addSubview(barView)
     }
