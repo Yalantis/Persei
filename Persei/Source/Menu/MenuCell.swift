@@ -16,6 +16,9 @@ class MenuCell: UICollectionViewCell {
         backgroundView = UIView()
         
         let views: [NSObject: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
+        
+        imageView.contentMode = .ScaleAspectFit
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         contentView.addSubview(imageView)
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
@@ -35,6 +38,7 @@ class MenuCell: UICollectionViewCell {
             )
         )
         
+        shadowView.setTranslatesAutoresizingMaskIntoConstraints(false)
         contentView.addSubview(shadowView)
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
@@ -46,7 +50,7 @@ class MenuCell: UICollectionViewCell {
         )
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:[shadowView(4)]|",
+                "V:[shadowView(2)]|",
                 options: nil,
                 metrics: nil,
                 views: views

@@ -15,13 +15,13 @@ private var ContentOffsetContext = 0
 public class StickyHeaderView: UIView {
     
     // MARK: - Init
-    func commonInit() {
+    func commonInit() {        
         addSubview(backgroundImageView)
         addSubview(contentContainer)
         
         clipsToBounds = true
         
-        contentContainer.backgroundColor = UIColor.yellowColor()
+        contentContainer.backgroundColor = UIColor.clearColor()
         contentContainer.layer.addSublayer(shadowLayer)
     }
 

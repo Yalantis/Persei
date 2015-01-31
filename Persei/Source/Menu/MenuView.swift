@@ -13,16 +13,21 @@ public class MenuView: StickyHeaderView {
     // MARK: - FlowLayout
     private lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: self.contentHeight, height: self.contentHeight)
+        let inset: CGFloat = 4.0
+        layout.itemSize = CGSize(width: self.contentHeight - inset, height: self.contentHeight - inset)
+        layout.minimumLineSpacing = inset
+        layout.minimumInteritemSpacing = inset
+        layout.scrollDirection = .Horizontal
         
         return layout
     }()
     
     // MARK: - CollectionView
     private lazy var collectionView: UICollectionView = { [unowned self] in
-        let layout = UICollectionViewFlowLayout()
-        let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        let view = UICollectionView(frame: CGRectZero, collectionViewLayout: self.collectionLayout)
         view.backgroundColor = UIColor.clearColor()
+        view.showsHorizontalScrollIndicator = false
+        view.contentInset = UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)
         
         view.registerClass(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
 
