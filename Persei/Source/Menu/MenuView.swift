@@ -6,6 +6,8 @@
 import Foundation
 import UIKit
 
+private let CellIdentifier = "MenuCell"
+
 public class MenuView: StickyHeaderView {
 
     // MARK: - FlowLayout
@@ -20,6 +22,7 @@ public class MenuView: StickyHeaderView {
     private lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        view.registerClass(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
 
         view.delegate = self
         view.dataSource = self
@@ -60,7 +63,14 @@ extension MenuView: UICollectionViewDataSource {
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            CellIdentifier,
+            forIndexPath: indexPath
+        ) as MenuCell
+        
+        cell.object = items[indexPath.item]
+        
+        return cell
     }
     
     // The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
@@ -70,7 +80,6 @@ extension MenuView: UICollectionViewDataSource {
 
 extension MenuView: UICollectionViewDelegate {
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        close()
     }
-
 }
