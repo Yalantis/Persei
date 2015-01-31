@@ -11,4 +11,7 @@ public struct MenuItem {
 
     public var image: UIImage
     public var highlightedImage: UIImage?
+    
+    public var backgroundColor = UIColor.blackColor()
+    public var highlightedBackgroundColor = UIColor.redColor()
 }
