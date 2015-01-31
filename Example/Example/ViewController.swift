@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
         tableView.contentInset.top = 64.0
         
-        let barView = StickHeaderView()
+        let barView = StickyHeaderView()
         let button = UIButton()
         button.setTitle("Hello", forState: .Normal)
         button.backgroundColor = UIColor.redColor()

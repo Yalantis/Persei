@@ -5,5 +5,7 @@
 
 import Foundation
 
-class MenuBar: StickHeaderView {
+class MenuBar: StickyHeaderView {
+
+
 }

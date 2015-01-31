@@ -1,5 +1,5 @@
 //
-//  StickHeaderView.swift
+//  StickyHeaderView.swift
 //  Persei
 //
 //  Created by zen on 28/01/15.
@@ -12,7 +12,7 @@ import QuartzCore
 
 private var ContentOffsetContext = 0
 
-public class StickHeaderView: UIView {
+public class StickyHeaderView: UIView {
     func commonInit() {
         addSubview(backgroundImageView)
         addSubview(contentContainer)
@@ -134,7 +134,7 @@ public class StickHeaderView: UIView {
     }
 
     public func close() {
-        releaved = false
+        revealed = false
     }
 
     // MARK: - Applyied Insets
