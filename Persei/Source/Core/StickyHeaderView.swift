@@ -13,6 +13,8 @@ import QuartzCore
 private var ContentOffsetContext = 0
 
 public class StickyHeaderView: UIView {
+    
+    // MARK: - Init
     func commonInit() {
         addSubview(backgroundImageView)
         addSubview(contentContainer)
@@ -22,8 +24,7 @@ public class StickyHeaderView: UIView {
         contentContainer.backgroundColor = UIColor.yellowColor()
         contentContainer.layer.addSublayer(shadowLayer)
     }
-    
-    // MARK: - Init
+
     public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
         super.init(frame: frame)
         commonInit()
@@ -58,7 +59,7 @@ public class StickyHeaderView: UIView {
     
     private let shadowLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        layer.colors = [UIColor(white: 0.0, alpha: 0.3).CGColor, UIColor.clearColor()]
+        layer.colors = [UIColor(white: 0.0, alpha: 0.5).CGColor, UIColor.clearColor()]
         layer.startPoint = CGPoint(x: 0.5, y: 1.0)
         layer.endPoint = CGPoint(x: 0.5, y: 0.0)
     
@@ -73,6 +74,7 @@ public class StickyHeaderView: UIView {
                 view.frame = contentContainer.bounds
                 view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
                 contentContainer.addSubview(view)
+                contentContainer.sendSubviewToBack(view)
             }
         }
     }
@@ -191,7 +193,7 @@ public class StickyHeaderView: UIView {
         
         var transform = CATransform3DIdentity
         transform.m34 = -1.0 / 500.0
-        let angle = (1.0 - fractionRevealed()) * 90.0 * CGFloat(M_PI) / 180.0  // acos(min(bounds.height, contentHeight) / contentHeight)
+        let angle = (1.0 - fractionRevealed()) * 90.0 * CGFloat(M_PI) / 180.0
         transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
         
         contentContainer.layer.transform = transform
