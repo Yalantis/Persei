@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public class MenuBar: StickyHeaderView {
+public class MenuView: StickyHeaderView {
 
     // MARK: - FlowLayout
     private lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in

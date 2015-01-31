@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1D6A352A94FB0A9C06CAB4B3 /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CCC7431809B0969BB3B /* StickyHeaderView.swift */; };
-		1D6A3C51811AA14A61C7CC65 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */; };
+		1D6A3C51811AA14A61C7CC65 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A38A07AF8C12F62EDC848 /* MenuView.swift */; };
 		1D6A3DD395290EA071B0E7C1 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */; };
 		1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */; };
 		1D6A3F484D3DA3CAD2764B63 /* MenuBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E4901C9474F565CAEFB /* MenuBarDelegate.swift */; };
 		1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */; };
+		AD4578B01A7D396800359F4F /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4578AF1A7D396800359F4F /* MenuCell.swift */; };
 		ADE974001A78F7AA0040B7C1 /* Persei.h in Headers */ = {isa = PBXBuildFile; fileRef = ADE973FF1A78F7AA0040B7C1 /* Persei.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
 		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
@@ -31,10 +32,11 @@
 /* Begin PBXFileReference section */
 		1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Equatable.swift"; sourceTree = "<group>"; };
-		1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		1D6A38A07AF8C12F62EDC848 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+NormalizedContentOffset.swift"; sourceTree = "<group>"; };
 		1D6A3CCC7431809B0969BB3B /* StickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
 		1D6A3E4901C9474F565CAEFB /* MenuBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarDelegate.swift; sourceTree = "<group>"; };
+		AD4578AF1A7D396800359F4F /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		ADE973FA1A78F7AA0040B7C1 /* Persei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE973FE1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE973FF1A78F7AA0040B7C1 /* Persei.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Persei.h; sourceTree = "<group>"; };
@@ -82,7 +84,8 @@
 		1D6A3BF043EABDF432FDD050 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */,
+				1D6A38A07AF8C12F62EDC848 /* MenuView.swift */,
+				AD4578AF1A7D396800359F4F /* MenuCell.swift */,
 				1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */,
 				1D6A3E4901C9474F565CAEFB /* MenuBarDelegate.swift */,
 			);
@@ -259,10 +262,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD4578B01A7D396800359F4F /* MenuCell.swift in Sources */,
 				1D6A352A94FB0A9C06CAB4B3 /* StickyHeaderView.swift in Sources */,
 				1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */,
 				1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */,
-				1D6A3C51811AA14A61C7CC65 /* MenuBar.swift in Sources */,
+				1D6A3C51811AA14A61C7CC65 /* MenuView.swift in Sources */,
 				1D6A3DD395290EA071B0E7C1 /* MenuItem.swift in Sources */,
 				1D6A3F484D3DA3CAD2764B63 /* MenuBarDelegate.swift in Sources */,
 			);

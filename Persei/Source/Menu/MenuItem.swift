@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 public struct MenuItem {
     public var name: String?
