@@ -170,7 +170,7 @@ public class StickyHeaderView: UIView {
         applyInsets(UIEdgeInsetsZero, animated: animated)
     }
     
-    // MARK: - BarHeight
+    // MARK: - ContentHeight
     @IBInspectable
     public var contentHeight: CGFloat = 64.0 {
         didSet {
