@@ -129,6 +129,14 @@ public class StickHeaderView: UIView {
         return min(CGRectGetHeight(bounds) / contentHeight, 1.0)
     }
 
+    public func reveal() {
+        revealed = true
+    }
+
+    public func close() {
+        releaved = false
+    }
+
     // MARK: - Applyied Insets
     private var appliedInsets: UIEdgeInsets = UIEdgeInsetsZero
     private var insetsApplied: Bool {
