@@ -9,7 +9,7 @@ import UIKit
 private let CellIdentifier = "MenuCell"
 
 public class MenuView: StickyHeaderView {
-
+    
     // MARK: - FlowLayout
     private lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -22,6 +22,8 @@ public class MenuView: StickyHeaderView {
     private lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        view.backgroundColor = UIColor.clearColor()
+        
         view.registerClass(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
 
         view.delegate = self
