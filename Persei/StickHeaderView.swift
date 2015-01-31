@@ -183,7 +183,7 @@ public class StickHeaderView: UIView {
         
         var transform = CATransform3DIdentity
         transform.m34 = -1.0 / 500.0
-        let angle = acos(min(bounds.height, contentHeight) / contentHeight)
+        let angle = (1.0 - fractionRevealed()) * 90.0 * CGFloat(M_PI) / 180.0  // acos(min(bounds.height, contentHeight) / contentHeight)
         transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
         
         contentContainer.layer.transform = transform
