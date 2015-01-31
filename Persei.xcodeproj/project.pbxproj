@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D6A3AFA87A2386612E5CF31 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3D88E6CA3F6AD15428E2 /* MenuBar.swift */; };
+		1D6A352A94FB0A9C06CAB4B3 /* StickHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CCC7431809B0969BB3B /* StickHeaderView.swift */; };
+		1D6A3C51811AA14A61C7CC65 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */; };
+		1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */; };
+		1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */; };
 		ADE974001A78F7AA0040B7C1 /* Persei.h in Headers */ = {isa = PBXBuildFile; fileRef = ADE973FF1A78F7AA0040B7C1 /* Persei.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
 		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
-		ADE974531A78F9ED0040B7C1 /* StickHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974521A78F9ED0040B7C1 /* StickHeaderView.swift */; };
-		ADE974551A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */; };
-		ADE974571A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,16 +27,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D6A3D88E6CA3F6AD15428E2 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Equatable.swift"; sourceTree = "<group>"; };
+		1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+NormalizedContentOffset.swift"; sourceTree = "<group>"; };
+		1D6A3CCC7431809B0969BB3B /* StickHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickHeaderView.swift; sourceTree = "<group>"; };
 		ADE973FA1A78F7AA0040B7C1 /* Persei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE973FE1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE973FF1A78F7AA0040B7C1 /* Persei.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Persei.h; sourceTree = "<group>"; };
 		ADE974051A78F7AA0040B7C1 /* PerseiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerseiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE9740B1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerseiTests.swift; sourceTree = "<group>"; };
-		ADE974521A78F9ED0040B7C1 /* StickHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickHeaderView.swift; sourceTree = "<group>"; };
-		ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Equatable.swift"; sourceTree = "<group>"; };
-		ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+NormalizedContentOffset.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +58,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D6A37C2AFE62841C52C1CBD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A3CCC7431809B0969BB3B /* StickHeaderView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1D6A383447C1FFA053441EDD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */,
+				1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		1D6A3BF043EABDF432FDD050 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A38A07AF8C12F62EDC848 /* MenuBar.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		1D6A3F7224D6775CF50B54C2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A37C2AFE62841C52C1CBD /* Core */,
+				1D6A383447C1FFA053441EDD /* Extension */,
+				1D6A3BF043EABDF432FDD050 /* Menu */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		ADE973F01A78F7AA0040B7C1 = {
 			isa = PBXGroup;
 			children = (
@@ -80,11 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				ADE973FF1A78F7AA0040B7C1 /* Persei.h */,
-				ADE974521A78F9ED0040B7C1 /* StickHeaderView.swift */,
-				ADE974541A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift */,
-				ADE974561A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift */,
 				ADE973FD1A78F7AA0040B7C1 /* Supporting Files */,
-				1D6A3D88E6CA3F6AD15428E2 /* MenuBar.swift */,
+				1D6A3F7224D6775CF50B54C2 /* Source */,
 			);
 			path = Persei;
 			sourceTree = "<group>";
@@ -221,10 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADE974571A7940860040B7C1 /* UIScrollView+NormalizedContentOffset.swift in Sources */,
-				ADE974551A7916A90040B7C1 /* UIEdgeInsets+Equatable.swift in Sources */,
-				ADE974531A78F9ED0040B7C1 /* StickHeaderView.swift in Sources */,
-				1D6A3AFA87A2386612E5CF31 /* MenuBar.swift in Sources */,
+				1D6A352A94FB0A9C06CAB4B3 /* StickHeaderView.swift in Sources */,
+				1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */,
+				1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */,
+				1D6A3C51811AA14A61C7CC65 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
