@@ -53,7 +53,7 @@ public class MenuView: StickyHeaderView {
     
 }
 
-extension MenuBar: UICollectionViewDataSource {
+extension MenuView: UICollectionViewDataSource {
 
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -68,7 +68,7 @@ extension MenuBar: UICollectionViewDataSource {
 //    
 }
 
-extension MenuBar: UICollectionViewDelegate {
+extension MenuView: UICollectionViewDelegate {
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }
