@@ -64,6 +64,13 @@ class MenuCell: UICollectionViewCell {
         commonInit()
     }
     
+    // MARK: - Reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        object = nil
+    }
+    
     // MARK: - ShadowView
     private let shadowView = UIView()
     
@@ -73,13 +80,19 @@ class MenuCell: UICollectionViewCell {
     // MARK: - Object
     var object: MenuItem? {
         didSet {
+            imageView.image = object?.image
+            imageView.highlightedImage = object?.highlightedImage
+
+            backgroundView?.backgroundColor = object?.backgroundColor
+            shadowView.backgroundColor = object?.shadowColor
         }
     }
 
-    // MARK: - Reuse
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        object = nil
+    // MARK: - Selection
+    override var selected: Bool {
+        didSet {
+            imageView.highlighted = selected
+            backgroundView?.backgroundColor = selected ? object?.highlightedBackgroundColor : object?.backgroundColor
+        }
     }
 }
