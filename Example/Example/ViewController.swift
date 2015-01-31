@@ -19,14 +19,14 @@ class ViewController: UIViewController {
 
         tableView.contentInset.top = 64.0
         
-        let barView = StickyHeaderView()
-        let button = UIButton()
-        button.setTitle("Hello", forState: .Normal)
-        button.backgroundColor = UIColor.redColor()
-        barView.contentView = button
+        let menu = MenuView()
+        menu.backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
         
-        barView.backgroundColor = UIColor.grayColor()
-        tableView.addSubview(barView)
+        menu.items = (0..<7 as Range).map {
+            MenuItem(image: UIImage(named: "icon_\($0)")!)
+        }
+    
+        tableView.addSubview(menu)
     }
 }
 
