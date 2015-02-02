@@ -122,10 +122,6 @@ public class StickyHeaderView: UIView {
             if oldValue != revealed {
                 if revealed {
                     self.addInsets()
-                    
-                    // if insets relatively large then scroll view doens't reveal the menu completely, so we need to "help"
-                    let adjustedOffset = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y - contentHeight)
-                    self.scrollView.contentOffset = adjustedOffset
                 } else {
                     self.removeInsets()
                 }
@@ -157,8 +153,9 @@ public class StickyHeaderView: UIView {
         let originalInset = scrollView.contentInset - appliedInsets
         let targetInset = originalInset + insets
 
-        self.appliedInsets = insets
-        self.scrollView.contentInset = targetInset
+        appliedInsets = insets
+        scrollView.contentInset = targetInset
+        scrollView.contentOffset.y = -scrollView.contentInset.top
     }
     
     private func addInsets() {
@@ -183,23 +180,29 @@ public class StickyHeaderView: UIView {
     
     // MARK: - Threshold
     @IBInspectable
-    public var threshold: CGFloat = 0.1
+    public var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
+    private func applyContentContainerTransform(progress: CGFloat) {
+        var transform = CATransform3DIdentity
+        transform.m34 = -1.0 / 500.0
+        let angle = (1.0 - progress) * 90.0 * CGFloat(M_PI) / 180.0
+        transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
+        
+        contentContainer.layer.transform = transform
+    }
+    
     private func didScroll() {
         layoutToFit()
         layoutIfNeeded()
         
+        let progress = fractionRevealed()
+        
         CATransaction.setDisableActions(true)
-        shadowLayer.opacity = 1.0 - Float(fractionRevealed())
+        shadowLayer.opacity = 1.0 - Float(progress)
         CATransaction.setDisableActions(false)
         
-        var transform = CATransform3DIdentity
-        transform.m34 = -1.0 / 500.0
-        let angle = (1.0 - fractionRevealed()) * 90.0 * CGFloat(M_PI) / 180.0
-        transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
-        
-        contentContainer.layer.transform = transform
+        applyContentContainerTransform(progress)
     }
     
     @objc
