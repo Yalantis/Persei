@@ -7,15 +7,29 @@ import Foundation
 import UIKit
 
 private let CellIdentifier = "MenuCell"
+private let DefaultContentHeight: CGFloat = 110.0
 
 public class MenuView: StickyHeaderView {
+    // MARK: - Init
+    override func commonInit() {
+        super.commonInit()
+        
+        backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+    }
+    
+    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: DefaultContentHeight)) {
+        super.init()
+        contentHeight = DefaultContentHeight // to prevent side-effect caused by property observers
+    }
+
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        contentHeight = DefaultContentHeight // to prevent side-effect caused by property observers
+    }
+    
     // MARK: - FlowLayout
     private lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
-        let inset: CGFloat = 4.0
-        layout.itemSize = CGSize(width: self.contentHeight - inset, height: self.contentHeight - inset)
-        layout.minimumLineSpacing = inset
-        layout.minimumInteritemSpacing = inset
         layout.scrollDirection = .Horizontal
         
         return layout
@@ -24,17 +38,17 @@ public class MenuView: StickyHeaderView {
     // MARK: - CollectionView
     private lazy var collectionView: UICollectionView = { [unowned self] in
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: self.collectionLayout)
+        self.updateContentLayout()
+        
         view.backgroundColor = UIColor.clearColor()
         view.showsHorizontalScrollIndicator = false
-        view.contentInset = UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0)
-        
         view.registerClass(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
 
         view.delegate = self
         view.dataSource = self
         
         self.contentView = view
-
+        
         return view
     }()
     
@@ -56,13 +70,23 @@ public class MenuView: StickyHeaderView {
         }
     }
     
-    // MARK: - ContentHeight
+    // MARK: - ContentHeight & Layout
     public override var contentHeight: CGFloat {
         didSet {
-            collectionLayout.itemSize = CGSize(width: contentHeight, height: contentHeight)
+            updateContentLayout()
         }
     }
     
+    private func updateContentLayout() {
+        let inset = ceil(contentHeight / 6.0)
+        let spacing = inset / 2.0
+    
+        collectionLayout.minimumLineSpacing = spacing
+        collectionLayout.minimumInteritemSpacing = spacing
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: inset, bottom: 0.0, right: inset)
+
+        collectionLayout.itemSize = CGSize(width: contentHeight - inset * 2, height: contentHeight - inset * 2)
+    }
 }
 
 extension MenuView: UICollectionViewDataSource {
@@ -80,10 +104,6 @@ extension MenuView: UICollectionViewDataSource {
         
         return cell
     }
-    
-    // The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
-//    optional func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
-//    
 }
 
 extension MenuView: UICollectionViewDelegate {

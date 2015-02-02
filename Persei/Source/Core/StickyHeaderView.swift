@@ -12,20 +12,22 @@ import QuartzCore
 
 private var ContentOffsetContext = 0
 
+private let DefaultContentHeight: CGFloat = 64.0
+
 public class StickyHeaderView: UIView {
     // MARK: - Init
     func commonInit() {
         addSubview(backgroundImageView)
         addSubview(contentContainer)
+
+        contentContainer.layer.addSublayer(shadowLayer)
         
         clipsToBounds = true
-        
-        contentContainer.backgroundColor = UIColor.clearColor()
-        contentContainer.layer.addSublayer(shadowLayer)
     }
 
-    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: 64.0)) {
+    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: DefaultContentHeight)) {
         super.init(frame: frame)
+        
         commonInit()
     }
     
@@ -52,6 +54,7 @@ public class StickyHeaderView: UIView {
     private let contentContainer: UIView = {
         let view = UIView()
         view.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        view.backgroundColor = UIColor.clearColor()
 
         return view
     }()
@@ -168,7 +171,7 @@ public class StickyHeaderView: UIView {
     
     // MARK: - ContentHeight
     @IBInspectable
-    public var contentHeight: CGFloat = 64.0 {
+    public var contentHeight: CGFloat = DefaultContentHeight {
         didSet {
             if superview != nil {
                 layoutToFit()
