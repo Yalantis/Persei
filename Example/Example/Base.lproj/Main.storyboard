@@ -58,10 +58,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="LLw-Wa-0N7">
-                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="YWw-1B-MDu">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="YWw-1B-MDu" userLabel="Menu Item">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="switchMenu" destination="575-Gb-4uV" id="HpE-9R-8CX"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icon_search" id="QHj-Cn-PKG">
+                        <barButtonItem key="rightBarButtonItem" image="icon_search" id="QHj-Cn-PKG" userLabel="Search Item">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>

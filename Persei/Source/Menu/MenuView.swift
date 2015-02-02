@@ -61,15 +61,15 @@ public class MenuView: StickyHeaderView {
 
     public var selectedIndex: Int? = 0 {
         didSet {
-//            var indexPath: NSIndexPath?
-//            if let index = self.selectedIndex {
-//                indexPath = NSIndexPath(forItem: index, inSection: 0)
-//            }
-//            
-//            self.collectionView.selectItemAtIndexPath(indexPath,
-//                animated: self.revealed,
-//                scrollPosition: .CenteredHorizontally
-//            )
+            var indexPath: NSIndexPath?
+            if let index = self.selectedIndex {
+                indexPath = NSIndexPath(forItem: index, inSection: 0)
+            }
+            
+            self.collectionView.selectItemAtIndexPath(indexPath,
+                animated: self.revealed,
+                scrollPosition: .CenteredHorizontally
+            )
         }
     }
     
@@ -114,7 +114,7 @@ extension MenuView: UICollectionViewDelegate {
         selectedIndex = indexPath.item
         delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
         
-        UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+        UIView.animateWithDuration(0.2, delay: 0.3, options: nil, animations: {
             self.revealed = false
         }, completion: nil)
     }

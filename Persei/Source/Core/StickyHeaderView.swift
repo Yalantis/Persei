@@ -131,9 +131,9 @@ public class StickyHeaderView: UIView {
     
     public func setRevealed(revealed: Bool, animated: Bool) {
         if animated {
-            UIView.animateWithDuration(0.2) {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
                 self.revealed = revealed
-            }
+            }, completion: nil)
         } else {
             self.revealed = revealed
         }
@@ -186,7 +186,7 @@ public class StickyHeaderView: UIView {
     private func applyContentContainerTransform(progress: CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = -1.0 / 500.0
-        let angle = (1.0 - progress) * 90.0 * CGFloat(M_PI) / 180.0
+        let angle = acos(min(bounds.height, contentHeight) / contentHeight)
         transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
         
         contentContainer.layer.transform = transform

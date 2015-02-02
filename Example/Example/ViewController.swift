@@ -12,6 +12,7 @@ import Persei
 class ViewController: UITableViewController {
     @IBOutlet
     private weak var imageView: UIImageView!
+    private weak var menu: MenuView!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -24,13 +25,17 @@ class ViewController: UITableViewController {
     
     private func loadMenu() {
         let menu = MenuView()
-        menu.backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
-        
-        menu.items = (0..<7 as Range).map {
-            MenuItem(image: UIImage(named: "menu_icon_\($0)")!)
-        }
+        menu.delegate = self
+        menu.items = items
         
         tableView.addSubview(menu)
+        
+        self.menu = menu
+    }
+    
+    // MARK: - Items
+    private let items = (0..<7 as Range).map {
+        MenuItem(image: UIImage(named: "menu_icon_\($0)")!)
     }
     
     // MARK: - Model
@@ -40,6 +45,12 @@ class ViewController: UITableViewController {
                 imageView.image = UIImage(named: model.rawValue)
             }
         }
+    }
+    
+    // MARK: - Actions
+    @IBAction
+    private func switchMenu() {
+        menu.setRevealed(!menu.revealed, animated: true)
     }
 }
 
