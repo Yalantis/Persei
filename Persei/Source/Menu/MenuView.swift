@@ -14,19 +14,13 @@ public class MenuView: StickyHeaderView {
     override func commonInit() {
         super.commonInit()
         
-        backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+        if backgroundColor == nil {
+            backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+        }
+
+        contentHeight = DefaultContentHeight
         
         updateContentLayout()
-    }
-    
-    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: DefaultContentHeight)) {
-        super.init()
-        contentHeight = DefaultContentHeight // to prevent side-effect caused by property observers
-    }
-
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        contentHeight = DefaultContentHeight // to prevent side-effect caused by property observers
     }
     
     // MARK: - FlowLayout
@@ -88,7 +82,7 @@ public class MenuView: StickyHeaderView {
     
     private func updateContentLayout() {
         let inset = ceil(contentHeight / 6.0)
-        let spacing = inset / 2.0
+        let spacing = floor(inset / 2.0)
     
         collectionLayout.minimumLineSpacing = spacing
         collectionLayout.minimumInteritemSpacing = spacing
