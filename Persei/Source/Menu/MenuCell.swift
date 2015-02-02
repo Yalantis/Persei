@@ -85,18 +85,21 @@ class MenuCell: UICollectionViewCell {
         didSet {
             imageView.image = object?.image
             imageView.highlightedImage = object?.highlightedImage
-            imageView.highlighted = selected
-
-            backgroundView?.backgroundColor = object?.backgroundColor
             shadowView.backgroundColor = object?.shadowColor
+            
+            updateSelectionVisibility()
         }
     }
-
+    
     // MARK: - Selection
+    private func updateSelectionVisibility() {
+        imageView.highlighted = selected
+        backgroundView?.backgroundColor = selected ? object?.highlightedBackgroundColor : object?.backgroundColor
+    }
+    
     override var selected: Bool {
         didSet {
-            imageView.highlighted = selected
-            backgroundView?.backgroundColor = selected ? object?.highlightedBackgroundColor : object?.backgroundColor
+            updateSelectionVisibility()
         }
     }
 }

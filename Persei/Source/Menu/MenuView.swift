@@ -67,16 +67,15 @@ public class MenuView: StickyHeaderView {
 
     public var selectedIndex: Int? = 0 {
         didSet {
-            let animated = revealed
-            if let index = selectedIndex {
-                collectionView.selectItemAtIndexPath(
-                    NSIndexPath(forItem: index, inSection: 0),
-                    animated: animated,
-                    scrollPosition:.CenteredHorizontally
-                )
-            } else {
-                collectionView.selectItemAtIndexPath(nil, animated: animated, scrollPosition: .CenteredHorizontally)
+            var indexPath: NSIndexPath?
+            if let index = self.selectedIndex {
+                indexPath = NSIndexPath(forItem: index, inSection: 0)
             }
+            
+            self.collectionView.selectItemAtIndexPath(indexPath,
+                animated: self.revealed,
+                scrollPosition: .CenteredHorizontally
+            )
         }
     }
     
