@@ -14,7 +14,7 @@ private var ContentOffsetContext = 0
 
 public class StickyHeaderView: UIView {
     // MARK: - Init
-    func commonInit() {        
+    func commonInit() {
         addSubview(backgroundImageView)
         addSubview(contentContainer)
         
@@ -119,6 +119,10 @@ public class StickyHeaderView: UIView {
             if oldValue != revealed {
                 if revealed {
                     self.addInsets()
+                    
+                    // if insets relatively large then scroll view doens't reveal the menu completely, so we need to "help"
+                    let adjustedOffset = CGPoint(x: frame.origin.x, y: frame.origin.y - appliedInsets.top)
+                    scrollView.contentOffset = adjustedOffset
                 } else {
                     self.removeInsets()
                 }
@@ -144,42 +148,37 @@ public class StickyHeaderView: UIView {
         return appliedInsets != UIEdgeInsetsZero
     }
 
-    private func applyInsets(insets: UIEdgeInsets, animated: Bool) {
+    private func applyInsets(insets: UIEdgeInsets) {
         let originalInset = scrollView.contentInset - appliedInsets
         let targetInset = originalInset + insets
 
         self.appliedInsets = insets
-        
-        if animated {
-            UIView.animateWithDuration(0.3) {
-                self.scrollView.contentInset = targetInset
-            }
-        } else {
-            scrollView.contentInset = targetInset
-        }
+        self.scrollView.contentInset = targetInset
     }
     
-    private func addInsets(animated: Bool = true) {
+    private func addInsets() {
         assert(!insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsets(top: contentHeight, left: 0.0, bottom: 0.0, right: 0.0), animated: animated)
+        applyInsets(UIEdgeInsets(top: contentHeight, left: 0.0, bottom: 0.0, right: 0.0))
     }
 
-    private func removeInsets(animated: Bool = true) {
+    private func removeInsets() {
         assert(insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsetsZero, animated: animated)
+        applyInsets(UIEdgeInsetsZero)
     }
     
     // MARK: - ContentHeight
     @IBInspectable
     public var contentHeight: CGFloat = 64.0 {
         didSet {
-            layoutToFit()
+            if superview != nil {
+                layoutToFit()
+            }
         }
     }
     
     // MARK: - Threshold
     @IBInspectable
-    public var threshold: CGFloat = 0.3
+    public var threshold: CGFloat = 0.2
     
     // MARK: - Content Offset Hanlding
     private func didScroll() {
@@ -201,12 +200,13 @@ public class StickyHeaderView: UIView {
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .Ended {
-            let value = scrollView.normalizedContentOffset.y
-            let triggeringValue = CGRectGetHeight(bounds) * threshold
-            let multiplier: CGFloat = revealed ? 1.0 : -1.0
-
-            if triggeringValue < value * multiplier {
-                revealed = !revealed
+            let value = scrollView.normalizedContentOffset.y * (revealed ? 1.0 : -1.0)
+            let triggeringValue = contentHeight * threshold
+            
+            if triggeringValue < value {
+                UIView.animateWithDuration(0.2) {
+                    self.revealed = !self.revealed
+                }
             }
         }
     }
