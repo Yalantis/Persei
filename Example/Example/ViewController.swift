@@ -9,11 +9,7 @@
 import UIKit
 import Persei
 
-class ViewController: UIViewController {
-
-    @IBOutlet
-    private weak var tableView: UITableView!
-
+class ViewController: UITableViewController {
     @IBOutlet
     private weak var imageView: UIImageView!
     
