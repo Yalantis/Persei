@@ -21,7 +21,7 @@ class MenuCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "|[imageView]|",
+                "|-[imageView]-|",
                 options: nil,
                 metrics: nil,
                 views: views
@@ -30,7 +30,7 @@ class MenuCell: UICollectionViewCell {
         
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|[imageView]|",
+                "V:|-[imageView]-|",
                 options: nil,
                 metrics: nil,
                 views: views
