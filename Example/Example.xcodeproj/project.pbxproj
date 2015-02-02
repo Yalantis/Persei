@@ -66,9 +66,9 @@
 		1D6A3DE49FB802E8F00FBCDC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADE9741F1A78F8500040B7C1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE974231A78F8500040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADE974261A78F8500040B7C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ADE974261A78F8500040B7C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
 		ADE974291A78F8500040B7C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ADE9742B1A78F8500040B7C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ADE9742B1A78F8500040B7C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		ADE9742E1A78F8500040B7C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		ADE974341A78F8500040B7C1 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE974391A78F8500040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		1D6A35D6CC5596C8BE0E3160 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ADE974261A78F8500040B7C1 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,6 +122,7 @@
 		1D6A384799617AE602C0694F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADE9742B1A78F8500040B7C1 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -154,9 +156,7 @@
 		ADE974211A78F8500040B7C1 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				ADE974261A78F8500040B7C1 /* ViewController.swift */,
 				ADE974281A78F8500040B7C1 /* Main.storyboard */,
-				ADE9742B1A78F8500040B7C1 /* Images.xcassets */,
 				ADE9742D1A78F8500040B7C1 /* LaunchScreen.xib */,
 				ADE974221A78F8500040B7C1 /* Supporting Files */,
 				1D6A3C81FE5A4D4F0AB1B026 /* Model */,
