@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class MenuCell: UICollectionViewCell {
-    
     // MARK: - Init
     private func commonInit() {
         backgroundView = UIView()

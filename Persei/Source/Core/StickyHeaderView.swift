@@ -13,7 +13,6 @@ import QuartzCore
 private var ContentOffsetContext = 0
 
 public class StickyHeaderView: UIView {
-    
     // MARK: - Init
     func commonInit() {        
         addSubview(backgroundImageView)

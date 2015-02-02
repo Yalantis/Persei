@@ -9,7 +9,6 @@ import UIKit
 private let CellIdentifier = "MenuCell"
 
 public class MenuView: StickyHeaderView {
-    
     // MARK: - FlowLayout
     private lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -64,7 +63,6 @@ public class MenuView: StickyHeaderView {
 }
 
 extension MenuView: UICollectionViewDataSource {
-
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }

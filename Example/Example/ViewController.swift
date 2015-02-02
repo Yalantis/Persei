@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.contentInset.top = 64.0
         
         let menu = MenuView()
         menu.backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
@@ -30,3 +28,9 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - MenuViewDelegate
+extension ViewController: MenuViewDelegate {
+    func menu(menu: MenuView, didSelectItemAtIndex index: Int) {
+        
+    }
+}
