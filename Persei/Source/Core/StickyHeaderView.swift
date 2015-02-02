@@ -117,32 +117,34 @@ public class StickyHeaderView: UIView {
     }
     
     // MARK: - State
-    public private(set) var revealed: Bool = false {
+    public var revealed: Bool = false {
         didSet {
             if oldValue != revealed {
                 if revealed {
                     self.addInsets()
                     
                     // if insets relatively large then scroll view doens't reveal the menu completely, so we need to "help"
-                    let adjustedOffset = CGPoint(x: frame.origin.x, y: frame.origin.y - appliedInsets.top)
-                    scrollView.contentOffset = adjustedOffset
+                    let adjustedOffset = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y - contentHeight)
+                    self.scrollView.contentOffset = adjustedOffset
                 } else {
                     self.removeInsets()
                 }
             }
         }
     }
+    
+    public func setRevealed(revealed: Bool, animated: Bool) {
+        if animated {
+            UIView.animateWithDuration(0.2) {
+                self.revealed = revealed
+            }
+        } else {
+            self.revealed = revealed
+        }
+    }
 
     private func fractionRevealed() -> CGFloat {
         return min(CGRectGetHeight(bounds) / contentHeight, 1.0)
-    }
-
-    public func reveal() {
-        revealed = true
-    }
-
-    public func close() {
-        revealed = false
     }
 
     // MARK: - Applyied Insets
@@ -181,7 +183,7 @@ public class StickyHeaderView: UIView {
     
     // MARK: - Threshold
     @IBInspectable
-    public var threshold: CGFloat = 0.2
+    public var threshold: CGFloat = 0.1
     
     // MARK: - Content Offset Hanlding
     private func didScroll() {
@@ -207,9 +209,7 @@ public class StickyHeaderView: UIView {
             let triggeringValue = contentHeight * threshold
             
             if triggeringValue < value {
-                UIView.animateWithDuration(0.2) {
-                    self.revealed = !self.revealed
-                }
+                setRevealed(!revealed, animated: true)
             }
         }
     }
