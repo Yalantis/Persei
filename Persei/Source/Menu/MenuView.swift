@@ -15,6 +15,8 @@ public class MenuView: StickyHeaderView {
         super.commonInit()
         
         backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+        
+        updateContentLayout()
     }
     
     public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: DefaultContentHeight)) {
@@ -38,8 +40,7 @@ public class MenuView: StickyHeaderView {
     // MARK: - CollectionView
     private lazy var collectionView: UICollectionView = { [unowned self] in
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: self.collectionLayout)
-        self.updateContentLayout()
-        
+        view.clipsToBounds = false
         view.backgroundColor = UIColor.clearColor()
         view.showsHorizontalScrollIndicator = false
         view.registerClass(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
@@ -66,7 +67,16 @@ public class MenuView: StickyHeaderView {
 
     public var selectedIndex: Int? = 0 {
         didSet {
-            
+            let animated = revealed
+            if let index = selectedIndex {
+                collectionView.selectItemAtIndexPath(
+                    NSIndexPath(forItem: index, inSection: 0),
+                    animated: animated,
+                    scrollPosition:.CenteredHorizontally
+                )
+            } else {
+                collectionView.selectItemAtIndexPath(nil, animated: animated, scrollPosition: .CenteredHorizontally)
+            }
         }
     }
     
@@ -108,6 +118,11 @@ extension MenuView: UICollectionViewDataSource {
 
 extension MenuView: UICollectionViewDelegate {
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        close()
+        selectedIndex = indexPath.item
+        delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
+        
+        UIView.animateWithDuration(0.2, delay: 0.2, options: nil, animations: {
+            self.revealed = false
+        }, completion: nil)
     }
 }
