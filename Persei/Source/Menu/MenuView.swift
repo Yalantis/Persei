@@ -37,6 +37,10 @@ public class MenuView: StickyHeaderView {
 
         return view
     }()
+    
+    // MARK: - Delegate
+    @IBOutlet
+    public weak var delegate: MenuViewDelegate?
 
     // TODO: remove explicit type declaration when compiler error will be fixed
     public var items: [MenuItem] = [] {
@@ -53,7 +57,6 @@ public class MenuView: StickyHeaderView {
     }
     
     // MARK: - ContentHeight
-    
     public override var contentHeight: CGFloat {
         didSet {
             collectionLayout.itemSize = CGSize(width: contentHeight, height: contentHeight)
