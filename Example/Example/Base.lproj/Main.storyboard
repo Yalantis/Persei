@@ -33,9 +33,35 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-hQ-pSu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="568" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-hQ-pSu">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections>
+                                    <tableViewSection id="YS6-CQ-gC8">
+                                        <cells>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="568" id="V8W-DY-PjJ">
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V8W-DY-PjJ" id="L3c-eg-hdc">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YS8-9b-Cbw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="567"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="YS8-9b-Cbw" secondAttribute="bottom" id="LMd-rj-dkz"/>
+                                                        <constraint firstItem="YS8-9b-Cbw" firstAttribute="top" secondItem="L3c-eg-hdc" secondAttribute="top" id="RNb-dS-avJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YS8-9b-Cbw" secondAttribute="trailing" id="cIe-pa-ECU"/>
+                                                        <constraint firstItem="YS8-9b-Cbw" firstAttribute="leading" secondItem="L3c-eg-hdc" secondAttribute="leading" id="dwL-0e-5xM"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </cells>
+                                    </tableViewSection>
+                                </sections>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="BEJ-nb-Qrd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -56,6 +82,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="YS8-9b-Cbw" id="78L-rR-Ymx"/>
                         <outlet property="tableView" destination="gqA-hQ-pSu" id="YIY-hQ-Ext"/>
                     </connections>
                 </viewController>
