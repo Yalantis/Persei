@@ -131,7 +131,7 @@ public class StickyHeaderView: UIView {
     
     public func setRevealed(revealed: Bool, animated: Bool) {
         if animated {
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: .BeginFromCurrentState | .CurveEaseOut, animations: {
                 self.revealed = revealed
             }, completion: nil)
         } else {
