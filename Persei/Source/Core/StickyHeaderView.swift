@@ -12,7 +12,7 @@ import QuartzCore
 
 private var ContentOffsetContext = 0
 
-private let DefaultContentHeight: CGFloat = 64.0
+private let DefaultContentHeight: CGFloat = 64
 
 public class StickyHeaderView: UIView {
     // MARK: - Init
@@ -25,7 +25,7 @@ public class StickyHeaderView: UIView {
         clipsToBounds = true
     }
 
-    public override init(frame: CGRect = CGRect(x: 0.0, y: 0.0, width: 320.0, height: DefaultContentHeight)) {
+    public override init(frame: CGRect = CGRect(x: 0, y: 0, width: 320, height: DefaultContentHeight)) {
         super.init(frame: frame)
         
         commonInit()
@@ -53,7 +53,7 @@ public class StickyHeaderView: UIView {
 
     private let contentContainer: UIView = {
         let view = UIView()
-        view.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        view.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         view.backgroundColor = UIColor.clearColor()
 
         return view
@@ -61,9 +61,9 @@ public class StickyHeaderView: UIView {
     
     private let shadowLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
-        layer.colors = [UIColor(white: 0.0, alpha: 0.5).CGColor, UIColor.clearColor()]
-        layer.startPoint = CGPoint(x: 0.5, y: 1.0)
-        layer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        layer.colors = [UIColor(white: 0, alpha: 0.5).CGColor, UIColor.clearColor()]
+        layer.startPoint = CGPoint(x: 0.5, y: 1)
+        layer.endPoint = CGPoint(x: 0.5, y: 0)
     
         return layer
     }()
@@ -131,7 +131,7 @@ public class StickyHeaderView: UIView {
     
     public func setRevealed(revealed: Bool, animated: Bool) {
         if animated {
-            UIView.animateWithDuration(0.3, delay: 0.0, options: .BeginFromCurrentState | .CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.2, delay: 0, options: .BeginFromCurrentState | .CurveEaseInOut, animations: {
                 self.revealed = revealed
             }, completion: nil)
         } else {
@@ -140,7 +140,7 @@ public class StickyHeaderView: UIView {
     }
 
     private func fractionRevealed() -> CGFloat {
-        return min(CGRectGetHeight(bounds) / contentHeight, 1.0)
+        return min(CGRectGetHeight(bounds) / contentHeight, 1)
     }
 
     // MARK: - Applyied Insets
@@ -160,7 +160,7 @@ public class StickyHeaderView: UIView {
     
     private func addInsets() {
         assert(!insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsets(top: contentHeight, left: 0.0, bottom: 0.0, right: 0.0))
+        applyInsets(UIEdgeInsets(top: contentHeight, left: 0, bottom: 0, right: 0))
     }
 
     private func removeInsets() {
@@ -185,9 +185,9 @@ public class StickyHeaderView: UIView {
     // MARK: - Content Offset Hanlding
     private func applyContentContainerTransform(progress: CGFloat) {
         var transform = CATransform3DIdentity
-        transform.m34 = -1.0 / 500.0
-        let angle = acos(min(bounds.height, contentHeight) / contentHeight)
-        transform = CATransform3DRotate(transform, angle, 1.0, 0.0, 0.0)
+        transform.m34 = -1 / 500
+        let angle = (1 - progress) * CGFloat(M_PI_2)
+        transform = CATransform3DRotate(transform, angle, 1, 0, 0)
         
         contentContainer.layer.transform = transform
     }
@@ -208,11 +208,15 @@ public class StickyHeaderView: UIView {
     @objc
     private func handlePan(recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .Ended {
-            let value = scrollView.normalizedContentOffset.y * (revealed ? 1.0 : -1.0)
+            let value = scrollView.normalizedContentOffset.y * (revealed ? 1 : -1)
             let triggeringValue = contentHeight * threshold
             
             if triggeringValue < value {
                 setRevealed(!revealed, animated: true)
+            } else if 0 < bounds.height && bounds.height < contentHeight  {
+                UIView.animateWithDuration(0.2) {
+                    self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                }
             }
         }
     }
@@ -223,8 +227,8 @@ public class StickyHeaderView: UIView {
 
         backgroundImageView.frame = bounds
         contentContainer.frame = CGRect(
-            x: 0.0,
-            y: min(CGRectGetHeight(bounds) - contentHeight, CGRectGetMidY(bounds) - contentHeight / 2.0),
+            x: 0,
+            y: min(CGRectGetHeight(bounds) - contentHeight, CGRectGetMidY(bounds) - contentHeight / 2),
             width: CGRectGetWidth(bounds),
             height: contentHeight
         )
@@ -239,14 +243,14 @@ public class StickyHeaderView: UIView {
     }
     
     public override func sizeThatFits(_: CGSize) -> CGSize {
-        var height: CGFloat = 0.0
+        var height: CGFloat = 0
         if revealed {
             height = appliedInsets.top - scrollView.normalizedContentOffset.y
         } else {
-            height = scrollView.normalizedContentOffset.y * -1.0
+            height = scrollView.normalizedContentOffset.y * -1
         }
 
-        let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0.0))
+        let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0))
         
         return output
     }
