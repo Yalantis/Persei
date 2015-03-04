@@ -20,7 +20,7 @@ public class StickyHeaderView: UIView {
         addSubview(backgroundImageView)
         addSubview(contentContainer)
 
-        contentContainer.layer.addSublayer(shadowLayer)
+        contentContainer.addSubview(shadowView)
         
         clipsToBounds = true
     }
@@ -59,14 +59,7 @@ public class StickyHeaderView: UIView {
         return view
     }()
     
-    private let shadowLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [UIColor(white: 0, alpha: 0.5).CGColor, UIColor.clearColor()]
-        layer.startPoint = CGPoint(x: 0.5, y: 1)
-        layer.endPoint = CGPoint(x: 0.5, y: 0)
-    
-        return layer
-    }()
+    private let shadowView = HeaderShadowView(frame: CGRectZero)
     
     @IBOutlet
     public var contentView: UIView? {
@@ -196,15 +189,14 @@ public class StickyHeaderView: UIView {
     }
     
     private func didScroll() {
+        let oldProgress = fractionRevealed()
+
         layoutToFit()
         layoutIfNeeded()
         
         let progress = fractionRevealed()
-        
-        CATransaction.setDisableActions(true)
-        shadowLayer.opacity = 1.0 - Float(progress)
-        CATransaction.setDisableActions(false)
-        
+        shadowView.alpha = 1 - progress
+
         applyContentContainerTransform(progress)
     }
     
@@ -236,7 +228,7 @@ public class StickyHeaderView: UIView {
             height: contentHeight
         )
         // shadow should be visible outside of bounds during rotation
-        shadowLayer.frame = CGRectInset(contentContainer.bounds, -20, 0)
+        shadowView.frame = CGRectInset(contentContainer.bounds, -round(contentContainer.bounds.width / 16), 0)
     }
 
     private func layoutToFit() {
