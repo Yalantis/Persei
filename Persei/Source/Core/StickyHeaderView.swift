@@ -144,7 +144,7 @@ public class StickyHeaderView: UIView {
     }
 
     private func fractionRevealed() -> CGFloat {
-        return min(CGRectGetHeight(bounds) / contentHeight, 1)
+        return min(bounds.height / contentHeight, 1)
     }
 
     // MARK: - Applyied Insets
@@ -201,9 +201,9 @@ public class StickyHeaderView: UIView {
         
         let progress = fractionRevealed()
         
-//        CATransaction.setDisableActions(true)
-//        shadowLayer.opacity = 1.0 - Float(progress)
-//        CATransaction.setDisableActions(false)
+        CATransaction.setDisableActions(true)
+        shadowLayer.opacity = 1.0 - Float(progress)
+        CATransaction.setDisableActions(false)
         
         applyContentContainerTransform(progress)
     }
@@ -231,11 +231,12 @@ public class StickyHeaderView: UIView {
         backgroundImageView.frame = bounds
         contentContainer.frame = CGRect(
             x: 0,
-            y: min(CGRectGetHeight(bounds) - contentHeight, CGRectGetMidY(bounds) - contentHeight / 2),
-            width: CGRectGetWidth(bounds),
+            y: min(bounds.height - contentHeight, bounds.midY - contentHeight / 2),
+            width: bounds.width,
             height: contentHeight
         )
-        shadowLayer.frame = contentContainer.bounds
+        // shadow should be visible outside of bounds during rotation
+        shadowLayer.frame = CGRectInset(contentContainer.bounds, -20, 0)
     }
 
     private func layoutToFit() {
