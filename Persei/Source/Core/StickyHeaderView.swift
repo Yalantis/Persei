@@ -133,7 +133,11 @@ public class StickyHeaderView: UIView {
         if animated {
             UIView.animateWithDuration(0.2, delay: 0, options: .BeginFromCurrentState | .CurveEaseInOut, animations: {
                 self.revealed = revealed
-            }, completion: nil)
+            }, completion: { completed in
+                UIView.animateWithDuration(0.2) {
+                    self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                }
+            })
         } else {
             self.revealed = revealed
         }
@@ -155,7 +159,6 @@ public class StickyHeaderView: UIView {
 
         appliedInsets = insets
         scrollView.contentInset = targetInset
-        scrollView.contentOffset.y = -scrollView.contentInset.top
     }
     
     private func addInsets() {
@@ -198,9 +201,9 @@ public class StickyHeaderView: UIView {
         
         let progress = fractionRevealed()
         
-        CATransaction.setDisableActions(true)
-        shadowLayer.opacity = 1.0 - Float(progress)
-        CATransaction.setDisableActions(false)
+//        CATransaction.setDisableActions(true)
+//        shadowLayer.opacity = 1.0 - Float(progress)
+//        CATransaction.setDisableActions(false)
         
         applyContentContainerTransform(progress)
     }
@@ -214,7 +217,7 @@ public class StickyHeaderView: UIView {
             if triggeringValue < value {
                 setRevealed(!revealed, animated: true)
             } else if 0 < bounds.height && bounds.height < contentHeight  {
-                UIView.animateWithDuration(0.2) {
+                UIView.animateWithDuration(0.3) {
                     self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
                 }
             }
