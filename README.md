@@ -82,6 +82,60 @@ extension FeedViewController: MenuViewDelegate {
 }
 ```
 
+####Reveal menu manually
+Menu can be reveal as a result of button tap:
+```swift
+func menuButtonSelected(sender: UIControl) {
+	menu.revealed = !menu.revealed
+
+	// or animated
+	menu.setRevealed(true, animated: true)
+}
+```
+
+
+####Customization
+`MenuItem` declares set of attributes, that allow you to customize appearance of items: 
+```swift
+struct MenuItem {
+    var image: UIImage // default image
+    var highlightedImage: UIImage? // image used during selection
+    
+    var backgroundColor: UIColor // default background color
+    var highlightedBackgroundColor: UIColor // background color used during selection
+    
+    var shadowColor: UIColor // color of bottom 2px shadow line
+}
+```
+
+Also you're free to configure background of `MenuView` by utilizing `backgroundColor` or `backgroundImage`. Note, that image should be resizeable: 
+```swift
+let menu = MenuView() 
+menu.backgroundImage = UIImage(named: "top_menu_background")
+```
+
+####Advanced customization
+- Can I place the UIImageView instead?
+- Sure! Just subclass / use `StickyHeaderView` directly. It offers layout, positioning and reveal control. All you have to do is to assign your custom view (animated nian-cat UIImageView) to `contentView`: 
+
+```swift
+let headerView = StickyHeaderView()
+let imageView = UIImageView(...) 
+
+headerView.contentView = imageView
+```
+
+Obviously, your custom view can have heigh different from default: 
+```swift
+headerView.contentHeight = image.size.height
+```
+
+As well as control distance to trigger open/close of the header: 
+```swift
+headerView.threshold = 0.5
+```
+Threshold is a float value from 0 to 1, specifies how much user needs to drag header for reveal.
+
 ##License
 
 	The MIT License (MIT)
