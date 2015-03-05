@@ -47,7 +47,9 @@ class ViewController: UITableViewController {
             title = model.description
             
             if isViewLoaded() {
+                let animation = CircularRevealTransition(layer: imageView.layer, center: CGPointZero)
                 imageView.image = model.image
+                animation.start()
             }
         }
     }
