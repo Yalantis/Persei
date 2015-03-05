@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 private let CellIdentifier = "MenuCell"
-private let DefaultContentHeight: CGFloat = 110.0
+private let DefaultContentHeight: CGFloat = 112.0
 
 public class MenuView: StickyHeaderView {
     // MARK: - Init
@@ -15,7 +15,7 @@ public class MenuView: StickyHeaderView {
         super.commonInit()
         
         if backgroundColor == nil {
-            backgroundColor = UIColor(red: 51.0 / 255.0, green: 51.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+            backgroundColor = UIColor(red: 51 / 255, green: 51 / 255, blue: 76 / 255, alpha: 1)
         }
 
         contentHeight = DefaultContentHeight
@@ -102,7 +102,8 @@ extension MenuView: UICollectionViewDataSource {
             CellIdentifier,
             forIndexPath: indexPath
         ) as? MenuCell
-        
+
+        // compatibility with Swift 1.1 & 1.2
         cell?.object = items[indexPath.item]
         
         return cell!
@@ -114,7 +115,7 @@ extension MenuView: UICollectionViewDelegate {
         selectedIndex = indexPath.item
         delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
         
-        UIView.animateWithDuration(0.2, delay: 0.3, options: nil, animations: {
+        UIView.animateWithDuration(0.2, delay: 0.4, options: nil, animations: {
             self.revealed = false
         }, completion: nil)
     }

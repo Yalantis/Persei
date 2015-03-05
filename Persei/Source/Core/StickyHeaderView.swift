@@ -135,6 +135,10 @@ public class StickyHeaderView: UIView {
             })
         } else {
             self.revealed = revealed
+            
+            if adjust {
+                self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+            }
         }
     }
     
@@ -214,7 +218,8 @@ public class StickyHeaderView: UIView {
             let velocity = recognizer.velocityInView(scrollView).y
             
             if triggeringValue < value {
-                setRevealed(!revealed, animated: true, adjustContentOffset: velocity < 0 && -velocity < contentHeight)
+                let adjust = !revealed || velocity < 0 && -velocity < contentHeight
+                setRevealed(!revealed, animated: true, adjustContentOffset: adjust)
             } else if 0 < bounds.height && bounds.height < contentHeight {
                 UIView.animateWithDuration(0.3) {
                     self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
