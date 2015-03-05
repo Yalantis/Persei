@@ -23,7 +23,7 @@ class CircularRevealTransition {
         mask.path = endPath
 
         animation = CABasicAnimation(keyPath: "path")
-        animation.duration = 0.4
+        animation.duration = 0.6
         animation.fromValue = startPath
         animation.toValue = endPath
         animation.delegate = self

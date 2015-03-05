@@ -47,9 +47,19 @@ class ViewController: UITableViewController {
             title = model.description
             
             if isViewLoaded() {
-                let animation = CircularRevealTransition(layer: imageView.layer, center: CGPointZero)
+                let center: CGPoint = {
+                    let itemFrame = self.menu.frameOfItemAtIndex(self.menu.selectedIndex!)
+                    let itemCenter = CGPoint(x: itemFrame.midX, y: itemFrame.midY)
+                    var convertedCenter = self.imageView.convertPoint(itemCenter, fromView: self.menu)
+                    convertedCenter.y = 0
+
+                    return convertedCenter
+                }()
+                
+                let transition = CircularRevealTransition(layer: imageView.layer, center: center)
+                transition.start()
+                
                 imageView.image = model.image
-                animation.start()
             }
         }
     }
