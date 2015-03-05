@@ -1,8 +1,10 @@
 ##Persei
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
-Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!
+Animated top menu for UITableView / UICollectionView / UIScrollView written in Swift!
+
 Made in [Yalantis](http://yalantis.com/).
+
 Check this [project on dribbble]("https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
 
 ##Requirements
@@ -10,6 +12,75 @@ Check this [project on dribbble]("https://dribbble.com/shots/1706861-Top-Menu-An
 iOS 7.x / 8.x, Swift 1.1 or 1.2
 
 ##Installation
+
+####[CocoaPods](http://cocoapods.org)
+```ruby
+pod 'Persei', '~> 1.0'
+```
+
+*(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
+
+####[Carthage](http://github.com/Carthage/Carthage)
+```ruby
+github "Yalantis/Persei" ~> 1.0
+```
+
+####Manual Installation
+> For application targets that do not support embedded frameworks, such as iOS 7, Persei can be integrated by including source files from the Persei folder directly, optionally wrapping the top-level types into `struct Persei` to simulate a namespace. Yes, this sucks.
+
+1. Add Persei as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/yalantis/Persei.git`
+2. Open the `Persei` folder, and drag `Persei.xcodeproj` into the file navigator of your app project.
+3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
+4. Ensure that the deployment target of `Persei.framework` matches that of the application target.
+5. In the tab bar at the top of that window, open the "Build Phases" panel.
+6. Expand the "Target Dependencies" group, and add `Persei.framework`.
+7. Expand the "Link Binary With Libraries" group, and add `SideMenu.framework`
+8. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Persei.framework`.
+
+##Usage
+####Import `Persei` module
+```swift
+import SideMenu
+```
+
+####Init
+```swift
+let menu = MenuView()    
+tableView.addSubview(menu)
+```
+
+####Configuring items 
+In order to set items you need to instantiate array of `MenuItem`:
+```swift
+let items = feedModes.map { mode: SomeYourCustomFeedMode -> MenuItem in
+	return MenuItem(image: mode.image)
+}
+
+menu.items = items
+```
+
+####Handling selection
+You can specify selected item manually:
+```swift
+menu.selectedIndex = 3
+```
+
+Note, that selectedIndex declared as `Int?` and will be `nil` in case of `menu.items = nil`. 
+
+Also, you can implement `MenuViewDelegate` to be notified about selection change:
+```swift
+// during init 
+menu.delegate = self
+
+// actual implementation
+extension FeedViewController: MenuViewDelegate {
+    func menu(menu: MenuView, didSelectItemAtIndex index: Int) {
+    	dataSource.mode = feedModes[index] // alter mode of dataSource
+
+    	tableView.reload() // update tableView
+    }
+}
+```
 
 ##License
 
