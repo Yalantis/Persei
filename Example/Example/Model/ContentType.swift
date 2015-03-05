@@ -1,6 +1,4 @@
-//
-//  Copyright © 2014 Yalantis
-//
+// For License please refer to LICENSE file in the root of Persei project
 
 import Foundation
 

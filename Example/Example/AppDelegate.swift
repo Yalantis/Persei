@@ -1,10 +1,4 @@
-//
-//  AppDelegate.swift
-//  Example
-//
-//  Created by zen on 28/01/15.
-//  Copyright (c) 2015 Yalantis. All rights reserved.
-//
+// For License please refer to LICENSE file in the root of Persei project
 
 import UIKit
 
