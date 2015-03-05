@@ -22,7 +22,8 @@ class ViewController: UITableViewController {
 
         loadMenu()
         
-        imageView.image = UIImage(named: model.rawValue)
+        title = model.description
+        imageView.image = model.image
     }
     
     private func loadMenu() {
@@ -43,8 +44,10 @@ class ViewController: UITableViewController {
     // MARK: - Model
     private var model: ContentType = ContentType.Films {
         didSet {
+            title = model.description
+            
             if isViewLoaded() {
-                imageView.image = UIImage(named: model.rawValue)
+                imageView.image = model.image
             }
         }
     }
