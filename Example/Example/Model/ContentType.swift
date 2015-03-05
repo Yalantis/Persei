@@ -4,16 +4,25 @@
 
 import Foundation
 
-enum ContentType: String {
+enum ContentType: String, Printable {
     case Music = "content_music"
     case Films = "content_films"
-}
 
-prefix func ! (value: ContentType) -> ContentType {
-    switch value {
+    func next() -> ContentType {
+        switch self {
         case .Music:
             return .Films
         case .Films:
             return .Music
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .Music:
+            return "Music"
+        case .Films:
+            return "Films"
+        }
     }
 }

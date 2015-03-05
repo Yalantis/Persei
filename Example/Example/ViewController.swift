@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import QuartzCore
+import CoreImage
 import Persei
 
 class ViewController: UITableViewController {
@@ -57,6 +59,6 @@ class ViewController: UITableViewController {
 // MARK: - MenuViewDelegate
 extension ViewController: MenuViewDelegate {
     func menu(menu: MenuView, didSelectItemAtIndex index: Int) {
-        model = !model
+        model = model.next()
     }
 }
