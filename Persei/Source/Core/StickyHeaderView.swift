@@ -46,7 +46,7 @@ public class StickyHeaderView: UIView {
         super.didMoveToSuperview()
         
         if superview != nil {
-            scrollView = superview as UIScrollView
+            scrollView = superview as? UIScrollView
             scrollView.sendSubviewToBack(self)
         }
     }
@@ -122,18 +122,24 @@ public class StickyHeaderView: UIView {
         }
     }
     
-    public func setRevealed(revealed: Bool, animated: Bool) {
+    private func setRevealed(revealed: Bool, animated: Bool, adjustContentOffset adjust: Bool) {
         if animated {
             UIView.animateWithDuration(0.2, delay: 0, options: .BeginFromCurrentState | .CurveEaseInOut, animations: {
                 self.revealed = revealed
             }, completion: { completed in
-                UIView.animateWithDuration(0.2) {
-                    self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                if adjust {
+                    UIView.animateWithDuration(0.2) {
+                        self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                    }
                 }
             })
         } else {
             self.revealed = revealed
         }
+    }
+    
+    public func setRevealed(revealed: Bool, animated: Bool) {
+        setRevealed(revealed, animated: animated, adjustContentOffset: true)
     }
 
     private func fractionRevealed() -> CGFloat {
@@ -205,10 +211,11 @@ public class StickyHeaderView: UIView {
         if recognizer.state == .Ended {
             let value = scrollView.normalizedContentOffset.y * (revealed ? 1 : -1)
             let triggeringValue = contentHeight * threshold
+            let velocity = recognizer.velocityInView(scrollView).y
             
             if triggeringValue < value {
-                setRevealed(!revealed, animated: true)
-            } else if 0 < bounds.height && bounds.height < contentHeight  {
+                setRevealed(!revealed, animated: true, adjustContentOffset: velocity < 0 && -velocity < contentHeight)
+            } else if 0 < bounds.height && bounds.height < contentHeight {
                 UIView.animateWithDuration(0.3) {
                     self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
                 }

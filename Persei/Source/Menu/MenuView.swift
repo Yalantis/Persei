@@ -101,11 +101,11 @@ extension MenuView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             CellIdentifier,
             forIndexPath: indexPath
-        ) as MenuCell
+        ) as? MenuCell
         
-        cell.object = items[indexPath.item]
+        cell?.object = items[indexPath.item]
         
-        return cell
+        return cell!
     }
 }
 
