@@ -1,0 +1,6 @@
+framework module UIImage_Autoresize {
+  umbrella header "Pods-Example-UIImage+Autoresize-umbrella.h"
+
+  export *
+  module * { export * }
+}

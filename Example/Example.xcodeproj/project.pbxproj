@@ -15,9 +15,14 @@
 		1D6A3F0B8C4CF9E0E86F6132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3409797E6A1CF29E9E2E /* AppDelegate.swift */; };
 		AD1F5DCD1A7F94F900BDC0CE /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1F5DCC1A7F94F900BDC0CE /* ContentType.swift */; };
 		AD472E321AA9B17F00250E50 /* TrendSansOne.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD472E311AA9B17F00250E50 /* TrendSansOne.otf */; };
+		AD472E3A1AA9B59100250E50 /* content_films-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD472E361AA9B59100250E50 /* content_films-568h@2x.png */; };
+		AD472E3B1AA9B59100250E50 /* content_films-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD472E371AA9B59100250E50 /* content_films-667h@2x.png */; };
+		AD472E3C1AA9B59100250E50 /* content_films.png in Resources */ = {isa = PBXBuildFile; fileRef = AD472E381AA9B59100250E50 /* content_films.png */; };
+		AD472E3D1AA9B59100250E50 /* content_films@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD472E391AA9B59100250E50 /* content_films@2x.png */; };
 		ADE9742C1A78F8500040B7C1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADE9742B1A78F8500040B7C1 /* Images.xcassets */; };
 		ADE9744F1A78F88C0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE9744A1A78F8600040B7C1 /* Persei.framework */; };
 		ADE974511A78F8D80040B7C1 /* Persei.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ADE9744A1A78F8600040B7C1 /* Persei.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F4B561D1A667654F741A88FA /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA0F007415B613CACE9D7CD /* Pods_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +70,16 @@
 		1D6A39D0D1259941A6AD567D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Example/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		1D6A3CBE4088EC6CBC44FFD2 /* CGRect+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extension.swift"; sourceTree = "<group>"; };
 		1D6A3ED334BF5B2840F84CD1 /* CircularRevealTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularRevealTransition.swift; sourceTree = "<group>"; };
+		426C27017765136F4A71C84A /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		4FA0F007415B613CACE9D7CD /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0572C7400FC803BA4D5670 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AD1F5DCC1A7F94F900BDC0CE /* ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		AD472E311AA9B17F00250E50 /* TrendSansOne.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TrendSansOne.otf; sourceTree = "<group>"; };
+		AD472E361AA9B59100250E50 /* content_films-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content_films-568h@2x.png"; sourceTree = "<group>"; };
+		AD472E371AA9B59100250E50 /* content_films-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content_films-667h@2x.png"; sourceTree = "<group>"; };
+		AD472E381AA9B59100250E50 /* content_films.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = content_films.png; sourceTree = "<group>"; };
+		AD472E391AA9B59100250E50 /* content_films@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content_films@2x.png"; sourceTree = "<group>"; };
+		AD472E421AA9B71200250E50 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		ADE9741F1A78F8500040B7C1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE974231A78F8500040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE9742B1A78F8500040B7C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
@@ -79,12 +92,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADE9744F1A78F88C0040B7C1 /* Persei.framework in Frameworks */,
+				F4B561D1A667654F741A88FA /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0873BC494D5EFB1D46ADCC5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FA0F007415B613CACE9D7CD /* Pods_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1D6A36F0E53AF23E93A6FF5F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +118,7 @@
 		1D6A384799617AE602C0694F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD472E351AA9B59100250E50 /* Content Images */,
 				AD472E301AA9B17F00250E50 /* Fonts */,
 				ADE9742B1A78F8500040B7C1 /* Images.xcassets */,
 				1D6A3BA366D576FD14B447FB /* UI */,
@@ -153,12 +176,25 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		AD472E351AA9B59100250E50 /* Content Images */ = {
+			isa = PBXGroup;
+			children = (
+				AD472E361AA9B59100250E50 /* content_films-568h@2x.png */,
+				AD472E371AA9B59100250E50 /* content_films-667h@2x.png */,
+				AD472E381AA9B59100250E50 /* content_films.png */,
+				AD472E391AA9B59100250E50 /* content_films@2x.png */,
+			);
+			path = "Content Images";
+			sourceTree = "<group>";
+		};
 		ADE974161A78F8500040B7C1 = {
 			isa = PBXGroup;
 			children = (
 				ADE974211A78F8500040B7C1 /* Example */,
 				ADE974201A78F8500040B7C1 /* Products */,
 				ADE974441A78F8600040B7C1 /* Persei.xcodeproj */,
+				EBC37C24D80713E2E0D3FC3A /* Pods */,
+				0873BC494D5EFB1D46ADCC5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				ADE974231A78F8500040B7C1 /* Info.plist */,
+				AD472E421AA9B71200250E50 /* Example-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -200,6 +237,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		EBC37C24D80713E2E0D3FC3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD0572C7400FC803BA4D5670 /* Pods-Example.debug.xcconfig */,
+				426C27017765136F4A71C84A /* Pods-Example.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,10 +253,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADE9743E1A78F8500040B7C1 /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				7566F4A735687794318D01E3 /* Check Pods Manifest.lock */,
 				ADE9741B1A78F8500040B7C1 /* Sources */,
 				ADE9741C1A78F8500040B7C1 /* Frameworks */,
 				ADE9741D1A78F8500040B7C1 /* Resources */,
 				ADE974501A78F8CB0040B7C1 /* Copy Frameworks */,
+				31641645035E83BB4C892A39 /* Copy Pods Resources */,
+				A1DBAFCF2746158630BFC322 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,13 +332,65 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADE9742C1A78F8500040B7C1 /* Images.xcassets in Resources */,
+				AD472E3C1AA9B59100250E50 /* content_films.png in Resources */,
 				1D6A30E9D08224728D88E652 /* Main.storyboard in Resources */,
+				AD472E3A1AA9B59100250E50 /* content_films-568h@2x.png in Resources */,
 				1D6A39249887B49E72525221 /* LaunchScreen.xib in Resources */,
 				AD472E321AA9B17F00250E50 /* TrendSansOne.otf in Resources */,
+				AD472E3D1AA9B59100250E50 /* content_films@2x.png in Resources */,
+				AD472E3B1AA9B59100250E50 /* content_films-667h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31641645035E83BB4C892A39 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7566F4A735687794318D01E3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A1DBAFCF2746158630BFC322 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ADE9741B1A78F8500040B7C1 /* Sources */ = {
@@ -413,23 +514,30 @@
 		};
 		ADE9743F1A78F8500040B7C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD0572C7400FC803BA4D5670 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		ADE974401A78F8500040B7C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 426C27017765136F4A71C84A /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 			};
 			name = Release;
 		};
