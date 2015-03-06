@@ -1,7 +1,6 @@
 ##Persei
-[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei.svg)
-
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
 ![Preview](https://github.com/Yalantis/Persei/blob/master/Assets/animation.gif)
 
@@ -19,6 +18,9 @@ iOS 7.x / 8.x, Swift 1.1 or 1.2
 
 ####[CocoaPods](http://cocoapods.org)
 ```ruby
+# required by Cocoapods 0.36.0.rc.1 for Swift Pods
+use_frameworks! 
+
 pod 'Persei', '~> 1.0'
 ```
 
