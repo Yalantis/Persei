@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
 
 	spec.source       = { :git => "https://github.com/Yalantis/Persei.git", :tag => "1.0" }
   	
-  	spec.source_files = 'Persei/*.swift'
+  	spec.source_files = 'Persei/Source/**/*.swift'
   	spec.module_name  = 'Persei'
   	spec.requires_arc = true
   end
