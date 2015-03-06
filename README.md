@@ -1,5 +1,5 @@
 ##Persei
-[![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei.svg)
+[![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei)
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
 ![Preview](https://github.com/Yalantis/Persei/blob/master/Assets/animation.gif)
@@ -8,7 +8,9 @@ Animated top menu for UITableView / UICollectionView / UIScrollView written in S
 
 Made in [Yalantis](http://yalantis.com/).
 
-Check this [project on dribbble](https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
+Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
+
+Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
 ##Requirements
 
@@ -146,7 +148,7 @@ Threshold is a float value from 0 to 1, specifies how much user needs to drag he
 
 	The MIT License (MIT)
 
-	Copyright © 2014 Yalantis
+	Copyright © 2015 Yalantis
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal

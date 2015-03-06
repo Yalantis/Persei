@@ -30,6 +30,12 @@ class ViewController: UITableViewController {
         self.menu = menu
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        println(imageView.bounds.size)
+    }
+    
     // MARK: - Items
     private let items = (0..<7 as Range).map {
         MenuItem(image: UIImage(named: "menu_icon_\($0)")!)

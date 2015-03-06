@@ -6,5 +6,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        let appearance = UINavigationBar.appearance()
+        appearance.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "TrendSansOne", size: 20)!,
+            NSForegroundColorAttributeName: UIColor(red: 44 / 255, green: 49 / 255, blue: 51 / 255, alpha: 1)
+        ]
+        
+        return true
+    }
 }
 

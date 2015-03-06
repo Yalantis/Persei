@@ -8,6 +8,10 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yalantis.persei.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TrendSansOne.otf</string>
+	</array>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
