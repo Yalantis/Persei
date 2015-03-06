@@ -7,7 +7,7 @@ Animated top menu for UITableView / UICollectionView / UIScrollView written in S
 
 Made in [Yalantis](http://yalantis.com/).
 
-Check this [project on dribbble]("https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
+Check this [project on dribbble](https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
 
 ##Requirements
 
