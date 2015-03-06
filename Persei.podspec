@@ -4,7 +4,7 @@ Pod::Spec.new do |spec|
 	
 	spec.homepage = "https://github.com/Yalantis/Persei"	
 	spec.summary = "Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!"
-	spec.screenshot = "https://github.com/Yalantis/Persei/blob/master/Assets/animation.gif" 
+	spec.screenshot = "https://github.com/Yalantis/Persei/blob/master/Assets/preview.jpg" 
 	
   	spec.author = "Yalantis"
   	spec.license = { :type => "MIT", :file => "LICENSE" }
