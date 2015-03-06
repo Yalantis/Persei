@@ -1,6 +1,8 @@
 ##Persei
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
+![Preview](https://github.com/Yalantis/Persei/blob/master/Assets/animation.gif)
+
 Animated top menu for UITableView / UICollectionView / UIScrollView written in Swift!
 
 Made in [Yalantis](http://yalantis.com/).
