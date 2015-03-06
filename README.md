@@ -148,7 +148,7 @@ Threshold is a float value from 0 to 1, specifies how much user needs to drag he
 
 	The MIT License (MIT)
 
-	Copyright © 2014 Yalantis
+	Copyright © 2015 Yalantis
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
