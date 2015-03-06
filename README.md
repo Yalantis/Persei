@@ -1,5 +1,5 @@
 ##Persei
-[![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei.svg)
+[![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei)
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
 ![Preview](https://github.com/Yalantis/Persei/blob/master/Assets/animation.gif)
