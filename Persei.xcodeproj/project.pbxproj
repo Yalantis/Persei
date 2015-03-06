@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D6A31F32FA60B85AFFBFEA6 /* HeaderShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3D95E981D3587CE94F93 /* HeaderShadowView.swift */; };
+		1D6A352A94FB0A9C06CAB4B3 /* StickyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3CCC7431809B0969BB3B /* StickyHeaderView.swift */; };
+		1D6A3C51811AA14A61C7CC65 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A38A07AF8C12F62EDC848 /* MenuView.swift */; };
+		1D6A3DD395290EA071B0E7C1 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */; };
+		1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */; };
+		1D6A3F484D3DA3CAD2764B63 /* MenuViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A3E4901C9474F565CAEFB /* MenuViewDelegate.swift */; };
+		1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */; };
+		AD4578B01A7D396800359F4F /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4578AF1A7D396800359F4F /* MenuCell.swift */; };
 		ADE974001A78F7AA0040B7C1 /* Persei.h in Headers */ = {isa = PBXBuildFile; fileRef = ADE973FF1A78F7AA0040B7C1 /* Persei.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
 		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
@@ -23,6 +31,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Equatable.swift"; sourceTree = "<group>"; };
+		1D6A38A07AF8C12F62EDC848 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+NormalizedContentOffset.swift"; sourceTree = "<group>"; };
+		1D6A3CCC7431809B0969BB3B /* StickyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderView.swift; sourceTree = "<group>"; };
+		1D6A3D95E981D3587CE94F93 /* HeaderShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderShadowView.swift; sourceTree = "<group>"; };
+		1D6A3E4901C9474F565CAEFB /* MenuViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewDelegate.swift; sourceTree = "<group>"; };
+		AD4578AF1A7D396800359F4F /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		ADE973FA1A78F7AA0040B7C1 /* Persei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE973FE1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE973FF1A78F7AA0040B7C1 /* Persei.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Persei.h; sourceTree = "<group>"; };
@@ -50,6 +66,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D6A37C2AFE62841C52C1CBD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A3CCC7431809B0969BB3B /* StickyHeaderView.swift */,
+				1D6A3D95E981D3587CE94F93 /* HeaderShadowView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1D6A383447C1FFA053441EDD /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */,
+				1D6A3BC30B40A0A0DE3C9F28 /* UIScrollView+NormalizedContentOffset.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		1D6A3BF043EABDF432FDD050 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A38A07AF8C12F62EDC848 /* MenuView.swift */,
+				1D6A3E4901C9474F565CAEFB /* MenuViewDelegate.swift */,
+				AD4578AF1A7D396800359F4F /* MenuCell.swift */,
+				1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		1D6A3F7224D6775CF50B54C2 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1D6A37C2AFE62841C52C1CBD /* Core */,
+				1D6A383447C1FFA053441EDD /* Extension */,
+				1D6A3BF043EABDF432FDD050 /* Menu */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		ADE973F01A78F7AA0040B7C1 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +128,7 @@
 			children = (
 				ADE973FF1A78F7AA0040B7C1 /* Persei.h */,
 				ADE973FD1A78F7AA0040B7C1 /* Supporting Files */,
+				1D6A3F7224D6775CF50B54C2 /* Source */,
 			);
 			path = Persei;
 			sourceTree = "<group>";
@@ -209,6 +265,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD4578B01A7D396800359F4F /* MenuCell.swift in Sources */,
+				1D6A352A94FB0A9C06CAB4B3 /* StickyHeaderView.swift in Sources */,
+				1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */,
+				1D6A3ED1B00544DC67794CC2 /* UIScrollView+NormalizedContentOffset.swift in Sources */,
+				1D6A3C51811AA14A61C7CC65 /* MenuView.swift in Sources */,
+				1D6A3DD395290EA071B0E7C1 /* MenuItem.swift in Sources */,
+				1D6A3F484D3DA3CAD2764B63 /* MenuViewDelegate.swift in Sources */,
+				1D6A31F32FA60B85AFFBFEA6 /* HeaderShadowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +383,7 @@
 		ADE974111A78F7AA0040B7C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +393,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		ADE974121A78F7AA0040B7C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +462,7 @@
 				ADE974121A78F7AA0040B7C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADE974131A78F7AA0040B7C1 /* Build configuration list for PBXNativeTarget "PerseiTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +471,7 @@
 				ADE974151A78F7AA0040B7C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
