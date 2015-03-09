@@ -48,7 +48,7 @@ github "Yalantis/Persei" ~> 1.0
 ##Usage
 ####Import `Persei` module
 ```swift
-import SideMenu
+import Persei
 ```
 
 ####Init
