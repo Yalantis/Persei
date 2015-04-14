@@ -14,7 +14,7 @@ Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-
 
 ##Requirements
 
-iOS 7.x / 8.x, Swift 1.1 or 1.2
+iOS 8.x, Swift 1.1 or 1.2
 
 ##Installation
 
@@ -23,14 +23,14 @@ iOS 7.x / 8.x, Swift 1.1 or 1.2
 # required by Cocoapods 0.36.0.rc.1 for Swift Pods
 use_frameworks! 
 
-pod 'Persei', '~> 1.0'
+pod 'Persei', '~> 1.0.1'
 ```
 
 *(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
 
 ####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 1.0
+github "Yalantis/Persei" ~> 1.0.1
 ```
 
 ####Manual Installation
