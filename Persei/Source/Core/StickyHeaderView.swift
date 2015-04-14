@@ -19,10 +19,14 @@ public class StickyHeaderView: UIView {
         clipsToBounds = true
     }
 
-    public override init(frame: CGRect = CGRect(x: 0, y: 0, width: 320, height: DefaultContentHeight)) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         commonInit()
+    }
+
+    public convenience init() {
+        self.init(frame: CGRect(x: 0, y: 0, width: 320, height: DefaultContentHeight))
     }
     
     required public init(coder aDecoder: NSCoder) {
