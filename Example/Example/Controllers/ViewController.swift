@@ -33,7 +33,7 @@ class ViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        println(imageView.bounds.size)
+        print(imageView.bounds.size)
     }
     
     // MARK: - Items

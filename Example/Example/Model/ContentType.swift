@@ -4,9 +4,9 @@ import Foundation
 
 import UIKit
 
-enum ContentType: String, Printable {
-    case Music = "content_music.png"
-    case Films = "content_films.png"
+enum ContentType: String, CustomStringConvertible {
+    case Music
+    case Films
 
     func next() -> ContentType {
         switch self {
@@ -18,16 +18,11 @@ enum ContentType: String, Printable {
     }
     
     var image: UIImage {
-        let image =  UIImage(named: rawValue)!
+        let image =  UIImage(named: "content_\(rawValue.lowercaseString).png")!
         return image
     }
     
     var description: String {
-        switch self {
-        case .Music:
-            return "Music"
-        case .Films:
-            return "Films"
-        }
+        return rawValue
     }
 }
