@@ -29,7 +29,7 @@ public class StickyHeaderView: UIView {
         self.init(frame: CGRect(x: 0, y: 0, width: 320, height: DefaultContentHeight))
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -65,7 +65,7 @@ public class StickyHeaderView: UIView {
             oldValue?.removeFromSuperview()
             if let view = contentView {
                 view.frame = contentContainer.bounds
-                view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                 contentContainer.addSubview(view)
                 contentContainer.sendSubviewToBack(view)
             }
@@ -93,13 +93,13 @@ public class StickyHeaderView: UIView {
         }
         
         didSet {
-            scrollView?.addObserver(self, forKeyPath: "contentOffset", options: .Initial | .New, context: &ContentOffsetContext)
+            scrollView?.addObserver(self, forKeyPath: "contentOffset", options: [.Initial, .New], context: &ContentOffsetContext)
             scrollView?.panGestureRecognizer.addTarget(self, action: "handlePan:")
         }
     }
     
     // MARK: - KVO
-    public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &ContentOffsetContext {
             didScroll()
         } else {
@@ -122,7 +122,7 @@ public class StickyHeaderView: UIView {
     
     private func setRevealed(revealed: Bool, animated: Bool, adjustContentOffset adjust: Bool) {
         if animated {
-            UIView.animateWithDuration(0.2, delay: 0, options: .BeginFromCurrentState | .CurveEaseInOut, animations: {
+            UIView.animateWithDuration(0.2, delay: 0, options: [.BeginFromCurrentState, .CurveEaseInOut], animations: {
                 self.revealed = revealed
             }, completion: { completed in
                 if adjust {
@@ -197,7 +197,7 @@ public class StickyHeaderView: UIView {
     }
     
     private func didScroll() {
-        let oldProgress = fractionRevealed()
+        fractionRevealed()
 
         layoutToFit()
         layoutIfNeeded()
@@ -242,7 +242,7 @@ public class StickyHeaderView: UIView {
     }
 
     private func layoutToFit() {
-        var origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
+        let origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
         frame.origin.y = origin
         
         sizeToFit()
@@ -256,7 +256,7 @@ public class StickyHeaderView: UIView {
             height = scrollView.normalizedContentOffset.y * -1
         }
 
-        let output = CGSize(width: CGRectGetWidth(scrollView.bounds), height: max(height, 0))
+        let output = CGSize(width: scrollView.bounds.width, height: max(height, 0))
         
         return output
     }

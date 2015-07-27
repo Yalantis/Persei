@@ -92,7 +92,7 @@ public class MenuView: StickyHeaderView {
 extension MenuView {
     public func frameOfItemAtIndex(index: Int) -> CGRect {
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
-        let layoutAttributes = collectionLayout.layoutAttributesForItemAtIndexPath(indexPath)
+        let layoutAttributes = collectionLayout.layoutAttributesForItemAtIndexPath(indexPath)!
         
         return self.convertRect(layoutAttributes.frame, fromView: collectionLayout.collectionView)
     }
@@ -121,7 +121,7 @@ extension MenuView: UICollectionViewDelegate {
         selectedIndex = indexPath.item
         delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
         
-        UIView.animateWithDuration(0.2, delay: 0.4, options: nil, animations: {
+        UIView.animateWithDuration(0.2, delay: 0.4, options: [], animations: {
             self.revealed = false
         }, completion: nil)
     }
