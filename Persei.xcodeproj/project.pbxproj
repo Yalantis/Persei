@@ -16,19 +16,7 @@
 		1D6A3F8BA02B98114BC15192 /* UIEdgeInsets+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6A35C2524EEA21EAAC2CA3 /* UIEdgeInsets+Equatable.swift */; };
 		AD4578B01A7D396800359F4F /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4578AF1A7D396800359F4F /* MenuCell.swift */; };
 		ADE974001A78F7AA0040B7C1 /* Persei.h in Headers */ = {isa = PBXBuildFile; fileRef = ADE973FF1A78F7AA0040B7C1 /* Persei.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */; };
-		ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		ADE974071A78F7AA0040B7C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ADE973F11A78F7AA0040B7C1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ADE973F91A78F7AA0040B7C1;
-			remoteInfo = Persei;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D6A340873B6C8AD9F99F7D7 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -42,9 +30,6 @@
 		ADE973FA1A78F7AA0040B7C1 /* Persei.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Persei.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE973FE1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADE973FF1A78F7AA0040B7C1 /* Persei.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Persei.h; sourceTree = "<group>"; };
-		ADE974051A78F7AA0040B7C1 /* PerseiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerseiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADE9740B1A78F7AA0040B7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerseiTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,14 +37,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADE974021A78F7AA0040B7C1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ADE974061A78F7AA0040B7C1 /* Persei.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				ADE973FC1A78F7AA0040B7C1 /* Persei */,
-				ADE974091A78F7AA0040B7C1 /* PerseiTests */,
 				ADE973FB1A78F7AA0040B7C1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				ADE973FA1A78F7AA0040B7C1 /* Persei.framework */,
-				ADE974051A78F7AA0040B7C1 /* PerseiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,23 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				ADE973FE1A78F7AA0040B7C1 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		ADE974091A78F7AA0040B7C1 /* PerseiTests */ = {
-			isa = PBXGroup;
-			children = (
-				ADE9740C1A78F7AA0040B7C1 /* PerseiTests.swift */,
-				ADE9740A1A78F7AA0040B7C1 /* Supporting Files */,
-			);
-			path = PerseiTests;
-			sourceTree = "<group>";
-		};
-		ADE9740A1A78F7AA0040B7C1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				ADE9740B1A78F7AA0040B7C1 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,24 +148,6 @@
 			productReference = ADE973FA1A78F7AA0040B7C1 /* Persei.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		ADE974041A78F7AA0040B7C1 /* PerseiTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ADE974131A78F7AA0040B7C1 /* Build configuration list for PBXNativeTarget "PerseiTests" */;
-			buildPhases = (
-				ADE974011A78F7AA0040B7C1 /* Sources */,
-				ADE974021A78F7AA0040B7C1 /* Frameworks */,
-				ADE974031A78F7AA0040B7C1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ADE974081A78F7AA0040B7C1 /* PBXTargetDependency */,
-			);
-			name = PerseiTests;
-			productName = PerseiTests;
-			productReference = ADE974051A78F7AA0040B7C1 /* PerseiTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -216,13 +156,10 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Yalantis;
 				TargetAttributes = {
 					ADE973F91A78F7AA0040B7C1 = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					ADE974041A78F7AA0040B7C1 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -240,20 +177,12 @@
 			projectRoot = "";
 			targets = (
 				ADE973F91A78F7AA0040B7C1 /* Persei */,
-				ADE974041A78F7AA0040B7C1 /* PerseiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		ADE973F81A78F7AA0040B7C1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ADE974031A78F7AA0040B7C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,23 +207,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADE974011A78F7AA0040B7C1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ADE9740D1A78F7AA0040B7C1 /* PerseiTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		ADE974081A78F7AA0040B7C1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ADE973F91A78F7AA0040B7C1 /* Persei */;
-			targetProxy = ADE974071A78F7AA0040B7C1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		ADE9740E1A78F7AA0040B7C1 /* Debug */ = {
@@ -318,6 +231,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -393,6 +307,7 @@
 				INFOPLIST_FILE = Persei/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -410,38 +325,9 @@
 				INFOPLIST_FILE = Persei/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yalantis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		ADE974141A78F7AA0040B7C1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PerseiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		ADE974151A78F7AA0040B7C1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PerseiTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -462,15 +348,6 @@
 			buildConfigurations = (
 				ADE974111A78F7AA0040B7C1 /* Debug */,
 				ADE974121A78F7AA0040B7C1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ADE974131A78F7AA0040B7C1 /* Build configuration list for PBXNativeTarget "PerseiTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ADE974141A78F7AA0040B7C1 /* Debug */,
-				ADE974151A78F7AA0040B7C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
