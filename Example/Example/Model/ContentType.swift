@@ -18,8 +18,17 @@ enum ContentType: String, CustomStringConvertible {
     }
     
     var image: UIImage {
-        let image =  UIImage(named: "content_\(rawValue.lowercaseString).png")!
+        let image =  UIImage(named: imageName)!
         return image
+    }
+    
+    private var imageName: String {
+        switch self {
+        case .Music:
+            return "content_music.png"
+        case .Films:
+            return "content_films.png"
+        }
     }
     
     var description: String {
