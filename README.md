@@ -12,6 +12,9 @@ Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Ani
 
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
+## Swift 2.0
+Currently we maintain a [branch](https://github.com/Yalantis/Persei/tree/swift_2.0) to provide support for Swift 2.0.
+
 ##Requirements
 
 iOS 8.x, Swift 1.1 or 1.2
