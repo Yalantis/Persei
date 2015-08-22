@@ -76,7 +76,7 @@ public class StickyHeaderView: UIView {
         case Top, Center, Bottom
     }
     
-    public var contentViewGravity: ContentViewGravity = .Center
+    public var contentViewGravity: ContentViewGravity = .Top
     
     // MARK: - Background Image
     private let backgroundImageView = UIImageView()
@@ -238,13 +238,19 @@ public class StickyHeaderView: UIView {
 
         backgroundImageView.frame = bounds
         
+        let containerY: CGFloat
+        switch contentViewGravity {
+        case .Top:
+            containerY = min(bounds.height - contentHeight, bounds.minY)
+
+        case .Center:
+            containerY = min(bounds.height - contentHeight, bounds.midY - contentHeight / 2)
+            
+        case .Bottom:
+            containerY = bounds.height - contentHeight
+        }
         
-        contentContainer.frame = CGRect(
-            x: 0,
-            y: min(bounds.height - contentHeight, bounds.midY - contentHeight / 2),
-            width: bounds.width,
-            height: contentHeight
-        )
+        contentContainer.frame = CGRect(x: 0, y: containerY, width: bounds.width, height: contentHeight)
         // shadow should be visible outside of bounds during rotation
         shadowView.frame = CGRectInset(contentContainer.bounds, -round(contentContainer.bounds.width / 16), 0)
     }
