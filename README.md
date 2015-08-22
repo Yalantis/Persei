@@ -101,6 +101,12 @@ func menuButtonSelected(sender: UIControl) {
 }
 ```
 
+####Content Gravity
+Use `contentViewGravity` to control sticking behavior. There are 3 available options: 
+
+- Top: `contentView` sticked to the top position of the view
+- Center: `contentView` is aligned to the middle of the streched view
+- Bottom: `contentView` sticked to the bottom
 
 ####Customization
 `MenuItem` declares set of attributes, that allow you to customize appearance of items: 
