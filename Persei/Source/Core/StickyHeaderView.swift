@@ -76,7 +76,16 @@ public class StickyHeaderView: UIView {
         case Top, Center, Bottom
     }
     
-    public var contentViewGravity: ContentViewGravity = .Top
+    /**
+    Affects on `contentView` sticking position during view stretching: 
+    
+    - Top: `contentView` sticked to the top position of the view
+    - Center: `contentView` is aligned to the middle of the streched view
+    - Bottom: `contentView` sticked to the bottom
+    
+    Default value is `Center`
+    **/
+    public var contentViewGravity: ContentViewGravity = .Center
     
     // MARK: - Background Image
     private let backgroundImageView = UIImageView()
