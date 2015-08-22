@@ -72,6 +72,12 @@ public class StickyHeaderView: UIView {
         }
     }
     
+    public enum ContentViewGravity {
+        case Top, Center, Bottom
+    }
+    
+    public var contentViewGravity: ContentViewGravity = .Center
+    
     // MARK: - Background Image
     private let backgroundImageView = UIImageView()
 
@@ -231,6 +237,8 @@ public class StickyHeaderView: UIView {
         super.layoutSubviews()
 
         backgroundImageView.frame = bounds
+        
+        
         contentContainer.frame = CGRect(
             x: 0,
             y: min(bounds.height - contentHeight, bounds.midY - contentHeight / 2),
