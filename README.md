@@ -20,17 +20,16 @@ iOS 8.x, Swift 1.1 or 1.2
 
 ####[CocoaPods](http://cocoapods.org)
 ```ruby
-# required by Cocoapods 0.36.0.rc.1 for Swift Pods
 use_frameworks! 
 
-pod 'Persei', '~> 1.0.1'
+pod 'Persei', '~> 1.1'
 ```
 
 *(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
 
 ####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 1.0.1
+github "Yalantis/Persei" ~> 1.1
 ```
 
 ####Manual Installation
