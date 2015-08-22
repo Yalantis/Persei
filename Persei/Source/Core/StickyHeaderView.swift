@@ -72,6 +72,21 @@ public class StickyHeaderView: UIView {
         }
     }
     
+    public enum ContentViewGravity {
+        case Top, Center, Bottom
+    }
+    
+    /**
+    Affects on `contentView` sticking position during view stretching: 
+    
+    - Top: `contentView` sticked to the top position of the view
+    - Center: `contentView` is aligned to the middle of the streched view
+    - Bottom: `contentView` sticked to the bottom
+    
+    Default value is `Center`
+    **/
+    public var contentViewGravity: ContentViewGravity = .Center
+    
     // MARK: - Background Image
     private let backgroundImageView = UIImageView()
 
@@ -231,12 +246,20 @@ public class StickyHeaderView: UIView {
         super.layoutSubviews()
 
         backgroundImageView.frame = bounds
-        contentContainer.frame = CGRect(
-            x: 0,
-            y: min(bounds.height - contentHeight, bounds.midY - contentHeight / 2),
-            width: bounds.width,
-            height: contentHeight
-        )
+        
+        let containerY: CGFloat
+        switch contentViewGravity {
+        case .Top:
+            containerY = min(bounds.height - contentHeight, bounds.minY)
+
+        case .Center:
+            containerY = min(bounds.height - contentHeight, bounds.midY - contentHeight / 2)
+            
+        case .Bottom:
+            containerY = bounds.height - contentHeight
+        }
+        
+        contentContainer.frame = CGRect(x: 0, y: containerY, width: bounds.width, height: contentHeight)
         // shadow should be visible outside of bounds during rotation
         shadowView.frame = CGRectInset(contentContainer.bounds, -round(contentContainer.bounds.width / 16), 0)
     }
