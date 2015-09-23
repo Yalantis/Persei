@@ -6,7 +6,7 @@
 
 Animated top menu for UITableView / UICollectionView / UIScrollView written in Swift!
 
-Made in [Yalantis](http://yalantis.com/).
+Made in [Yalantis](https://yalantis.com/?utm_source=github).
 
 Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
 
