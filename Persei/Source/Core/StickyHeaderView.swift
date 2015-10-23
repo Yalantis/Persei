@@ -212,8 +212,6 @@ public class StickyHeaderView: UIView {
     }
     
     private func didScroll() {
-        let oldProgress = fractionRevealed()
-
         layoutToFit()
         layoutIfNeeded()
         
