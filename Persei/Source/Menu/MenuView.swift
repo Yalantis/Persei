@@ -121,7 +121,7 @@ extension MenuView: UICollectionViewDelegate {
         selectedIndex = indexPath.item
         delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
         
-        UIView.animateWithDuration(0.2, delay: 0.4, options: nil, animations: {
+        UIView.animateWithDuration(0.2, delay: 0.4, options: [], animations: {
             self.revealed = false
         }, completion: nil)
     }
