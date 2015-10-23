@@ -13,11 +13,11 @@ Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Ani
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
 ## Swift 2.0
-Currently we maintain a [branch](https://github.com/Yalantis/Persei/tree/swift_2.0) to provide support for Swift 2.0.
+Starting from 2.0 version Persei uses Swift 2.0. If you're using Swift 1.2 or 1.0, please, user 1.1 version of Persei.
 
 ##Requirements
 
-iOS 8.x, Swift 1.1 or 1.2
+iOS 8.x, Swift 1.2 or 2.0
 
 ##Installation
 
@@ -25,14 +25,18 @@ iOS 8.x, Swift 1.1 or 1.2
 ```ruby
 use_frameworks! 
 
-pod 'Persei', '~> 1.1'
+# Swift 2.0, 2.1
+pod 'Persei', '~> 2.0'
+
+# for Swift 1.1, 1.2 
+# pod 'Persei', '~> 1.1'
 ```
 
 *(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
 
 ####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 1.1
+github "Yalantis/Persei" ~> 2.0
 ```
 
 ####Manual Installation

@@ -6,6 +6,7 @@ import CoreImage
 import Persei
 
 class ViewController: UITableViewController {
+    
     @IBOutlet
     private weak var imageView: UIImageView!
     private weak var menu: MenuView!
@@ -33,7 +34,7 @@ class ViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        println(imageView.bounds.size)
+        print(imageView.bounds.size)
     }
     
     // MARK: - Items
