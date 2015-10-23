@@ -2,13 +2,6 @@
 
 import UIKit
 
-extension UIEdgeInsets: Equatable {
-}
-
-public func == (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> Bool {
-    return UIEdgeInsetsEqualToEdgeInsets(lhs, rhs)
-}
-
 public func + (lhs: UIEdgeInsets, rhs: UIEdgeInsets) -> UIEdgeInsets {
     return UIEdgeInsets(
         top: lhs.top + rhs.top,

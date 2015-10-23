@@ -4,7 +4,7 @@ import Foundation
 
 import UIKit
 
-enum ContentType: String, Printable {
+enum ContentType: String, CustomStringConvertible {
     case Music = "content_music.png"
     case Films = "content_films.png"
 

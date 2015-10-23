@@ -43,7 +43,7 @@ class CircularRevealTransition {
 
 
     func start() {
-        layer.superlayer.insertSublayer(snapshotLayer, below: layer)
+        layer.superlayer!.insertSublayer(snapshotLayer, below: layer)
         snapshotLayer.frame = layer.frame
         
         layer.mask = mask

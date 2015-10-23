@@ -6,11 +6,14 @@
 
 Animated top menu for UITableView / UICollectionView / UIScrollView written in Swift!
 
-Made in [Yalantis](http://yalantis.com/).
+Made in [Yalantis](https://yalantis.com/?utm_source=github).
 
 Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Animation?list=users&offset=23)
 
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
+
+## Swift 2.0
+Currently we maintain a [branch](https://github.com/Yalantis/Persei/tree/swift_2.0) to provide support for Swift 2.0.
 
 ##Requirements
 
@@ -47,7 +50,7 @@ github "Yalantis/Persei" ~> 1.1
 ##Usage
 ####Import `Persei` module
 ```swift
-import SideMenu
+import Persei
 ```
 
 ####Init

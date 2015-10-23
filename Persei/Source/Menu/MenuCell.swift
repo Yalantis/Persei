@@ -8,15 +8,15 @@ class MenuCell: UICollectionViewCell {
     private func commonInit() {
         backgroundView = UIView()
         
-        let views: [NSObject: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
+        let views: [String: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
         
         imageView.contentMode = .ScaleAspectFit
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "|-[imageView]-|",
-                options: nil,
+                options: [],
                 metrics: nil,
                 views: views
             )
@@ -25,18 +25,18 @@ class MenuCell: UICollectionViewCell {
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "V:|-[imageView]-|",
-                options: nil,
+                options: [],
                 metrics: nil,
                 views: views
             )
         )
         
-        shadowView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        shadowView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(shadowView)
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "|[shadowView]|",
-                options: nil,
+                options: [],
                 metrics: nil,
                 views: views
             )
@@ -44,7 +44,7 @@ class MenuCell: UICollectionViewCell {
         contentView.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "V:[shadowView(2)]|",
-                options: nil,
+                options: [],
                 metrics: nil,
                 views: views
             )
@@ -56,7 +56,7 @@ class MenuCell: UICollectionViewCell {
         commonInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
