@@ -8,7 +8,7 @@ class MenuCell: UICollectionViewCell {
     private func commonInit() {
         backgroundView = UIView()
         
-        let views: [NSObject: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
+        let views: [String: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
         
         imageView.contentMode = .ScaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false

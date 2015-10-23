@@ -92,7 +92,7 @@ public class MenuView: StickyHeaderView {
 extension MenuView {
     public func frameOfItemAtIndex(index: Int) -> CGRect {
         let indexPath = NSIndexPath(forItem: index, inSection: 0)
-        let layoutAttributes = collectionLayout.layoutAttributesForItemAtIndexPath(indexPath)
+        let layoutAttributes = collectionLayout.layoutAttributesForItemAtIndexPath(indexPath)!
         
         return self.convertRect(layoutAttributes.frame, fromView: collectionLayout.collectionView)
     }
