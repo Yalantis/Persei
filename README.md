@@ -26,7 +26,7 @@ iOS 8.x, Swift 1.2 or 2.0
 use_frameworks! 
 
 # Swift 2.0, 2.1
-pod 'Persei', '~> 2.0'
+pod 'Persei', '~> 2.0.1'
 
 # for Swift 1.1, 1.2 
 # pod 'Persei', '~> 1.1'
@@ -36,7 +36,7 @@ pod 'Persei', '~> 2.0'
 
 ####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 2.0
+github "Yalantis/Persei" ~> 2.0.1
 ```
 
 ####Manual Installation
