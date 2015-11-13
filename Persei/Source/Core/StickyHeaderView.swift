@@ -37,15 +37,21 @@ public class StickyHeaderView: UIView {
     // MARK: - View lifecycle
     public override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
-        scrollView = nil
+        
+        if newSuperview == nil, let view = superview as? UIScrollView {
+            view.removeObserver(self, forKeyPath: "contentOffset", context: &ContentOffsetContext)
+            view.panGestureRecognizer.removeTarget(self, action: "handlePan:")
+            appliedInsets = UIEdgeInsetsZero
+        }
     }
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
-        if superview != nil {
-            scrollView = superview as? UIScrollView
-            scrollView.sendSubviewToBack(self)
+        if let view = superview as? UIScrollView {
+            view.addObserver(self, forKeyPath: "contentOffset", options: [.Initial, .New], context: &ContentOffsetContext)
+            view.panGestureRecognizer.addTarget(self, action: "handlePan:")
+            view.sendSubviewToBack(self)
         }
     }
 
@@ -99,19 +105,7 @@ public class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
-    private weak var scrollView: UIScrollView! {
-        willSet {
-            self.scrollView?.removeObserver(self, forKeyPath: "contentOffset", context: &ContentOffsetContext)
-            self.scrollView?.panGestureRecognizer.removeTarget(self, action: "handlePan:")
-            
-            appliedInsets = UIEdgeInsetsZero
-        }
-        
-        didSet {
-            scrollView?.addObserver(self, forKeyPath: "contentOffset", options: [.Initial, .New], context: &ContentOffsetContext)
-            scrollView?.panGestureRecognizer.addTarget(self, action: "handlePan:")
-        }
-    }
+    private var scrollView: UIScrollView! { return superview as! UIScrollView }
     
     // MARK: - KVO
     public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
