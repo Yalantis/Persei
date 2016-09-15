@@ -1,4 +1,6 @@
 language: objective-c
+osx_image: xcode8
+
 before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
 script:
