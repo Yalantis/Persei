@@ -5,7 +5,7 @@ import UIKit
 import QuartzCore
 
 class HeaderShadowView: UIView {
-    override class func layerClass() -> AnyClass {
+    override class var layerClass : AnyClass {
         return CAGradientLayer.self
     }
     
@@ -21,9 +21,9 @@ class HeaderShadowView: UIView {
         setupLayer()
     }
     
-    private func setupLayer() {
+    fileprivate func setupLayer() {
         if let gradientLayer = layer as? CAGradientLayer {
-            gradientLayer.colors = [UIColor(white: 0, alpha: 0.5).CGColor, UIColor.clearColor()]
+            gradientLayer.colors = [UIColor(white: 0, alpha: 0.5).cgColor, UIColor.clear]
             gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)
             gradientLayer.endPoint = CGPoint(x: 0.5, y: 0)
         }

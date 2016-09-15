@@ -5,17 +5,17 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     // MARK: - Init
-    private func commonInit() {
+    fileprivate func commonInit() {
         backgroundView = UIView()
         
         let views: [String: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
         
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
         contentView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "|-[imageView]-|",
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "|-[imageView]-|",
                 options: [],
                 metrics: nil,
                 views: views
@@ -23,8 +23,8 @@ class MenuCell: UICollectionViewCell {
         )
         
         contentView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[imageView]-|",
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-[imageView]-|",
                 options: [],
                 metrics: nil,
                 views: views
@@ -34,16 +34,16 @@ class MenuCell: UICollectionViewCell {
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(shadowView)
         contentView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "|[shadowView]|",
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "|[shadowView]|",
                 options: [],
                 metrics: nil,
                 views: views
             )
         )
         contentView.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:[shadowView(2)]|",
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:[shadowView(2)]|",
                 options: [],
                 metrics: nil,
                 views: views
@@ -69,10 +69,10 @@ class MenuCell: UICollectionViewCell {
     }
     
     // MARK: - ShadowView
-    private let shadowView = UIView()
+    fileprivate let shadowView = UIView()
     
     // MARK: - ImageView
-    private let imageView = UIImageView()
+    fileprivate let imageView = UIImageView()
     
     // MARK: - Object
     var object: MenuItem? {
@@ -86,12 +86,12 @@ class MenuCell: UICollectionViewCell {
     }
     
     // MARK: - Selection
-    private func updateSelectionVisibility() {
-        imageView.highlighted = selected
-        backgroundView?.backgroundColor = selected ? object?.highlightedBackgroundColor : object?.backgroundColor
+    fileprivate func updateSelectionVisibility() {
+        imageView.isHighlighted = isSelected
+        backgroundView?.backgroundColor = isSelected ? object?.highlightedBackgroundColor : object?.backgroundColor
     }
     
-    override var selected: Bool {
+    override var isSelected: Bool {
         didSet {
             updateSelectionVisibility()
         }
