@@ -1,14 +1,11 @@
 // For License please refer to LICENSE file in the root of Persei project
 
 import UIKit
-import QuartzCore
-import CoreImage
 import Persei
 
 class ViewController: UITableViewController {
     
-    @IBOutlet
-    fileprivate weak var imageView: UIImageView!
+    @IBOutlet fileprivate weak var imageView: UIImageView!
     fileprivate weak var menu: MenuView!
     
     // MARK: - View Lifecycle
@@ -22,19 +19,14 @@ class ViewController: UITableViewController {
     }
     
     fileprivate func loadMenu() {
-        let menu = MenuView()
-        menu.delegate = self
-        menu.items = items
+        menu = {
+            let menu = MenuView()
+            menu.delegate = self
+            menu.items = items
+            return menu
+        }()
         
         tableView.addSubview(menu)
-        
-        self.menu = menu
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print(imageView.bounds.size)
     }
     
     // MARK: - Items
@@ -43,15 +35,15 @@ class ViewController: UITableViewController {
     }
     
     // MARK: - Model
-    fileprivate var model: ContentType = ContentType.Films {
+    fileprivate var model: ContentType = .films {
         didSet {
             title = model.description
             
             if isViewLoaded {
                 let center: CGPoint = {
-                    let itemFrame = self.menu.frameOfItemAtIndex(self.menu.selectedIndex!)
+                    let itemFrame = menu.frameOfItem(at: menu.selectedIndex!)
                     let itemCenter = CGPoint(x: itemFrame.midX, y: itemFrame.midY)
-                    var convertedCenter = self.imageView.convert(itemCenter, from: self.menu)
+                    var convertedCenter = imageView.convert(itemCenter, from: menu)
                     convertedCenter.y = 0
 
                     return convertedCenter
@@ -66,15 +58,16 @@ class ViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    @IBAction
-    fileprivate func switchMenu() {
+    @IBAction fileprivate func switchMenu() {
         menu.setRevealed(!menu.revealed, animated: true)
     }
 }
 
 // MARK: - MenuViewDelegate
+
 extension ViewController: MenuViewDelegate {
-    func menu(_ menu: MenuView, didSelectItemAtIndex index: Int) {
+    
+    func menu(_ menu: MenuView, didSelectItemAt index: Int) {
         model = model.next()
     }
 }

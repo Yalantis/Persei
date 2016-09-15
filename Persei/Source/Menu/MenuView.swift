@@ -1,12 +1,12 @@
 // For License please refer to LICENSE file in the root of Persei project
 
-import Foundation
 import UIKit
 
 private let CellIdentifier = "MenuCell"
 private let DefaultContentHeight: CGFloat = 112.0
 
 open class MenuView: StickyHeaderView {
+    
     // MARK: - Init
     override func commonInit() {
         super.commonInit()
@@ -30,9 +30,9 @@ open class MenuView: StickyHeaderView {
     
     // MARK: - CollectionView
     fileprivate lazy var collectionView: UICollectionView = { [unowned self] in
-        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: self.collectionLayout)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionLayout)
         view.clipsToBounds = false
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = .clear
         view.showsHorizontalScrollIndicator = false
         view.register(MenuCell.self, forCellWithReuseIdentifier: CellIdentifier)
 
@@ -45,8 +45,7 @@ open class MenuView: StickyHeaderView {
     }()
     
     // MARK: - Delegate
-    @IBOutlet
-    open weak var delegate: MenuViewDelegate?
+    @IBOutlet open weak var delegate: MenuViewDelegate?
 
     // TODO: remove explicit type declaration when compiler error will be fixed
     open var items: [MenuItem] = [] {
@@ -59,12 +58,12 @@ open class MenuView: StickyHeaderView {
     open var selectedIndex: Int? = 0 {
         didSet {
             var indexPath: IndexPath?
-            if let index = self.selectedIndex {
+            if let index = selectedIndex {
                 indexPath = IndexPath(item: index, section: 0)
             }
             
             self.collectionView.selectItem(at: indexPath,
-                animated: self.revealed,
+                animated: revealed,
                 scrollPosition: .centeredHorizontally
             )
         }
@@ -89,40 +88,44 @@ open class MenuView: StickyHeaderView {
     }
 }
 
-extension MenuView {
-    public func frameOfItemAtIndex(_ index: Int) -> CGRect {
+public extension MenuView {
+    
+    func frameOfItem(at index: Int) -> CGRect {
         let indexPath = IndexPath(item: index, section: 0)
         let layoutAttributes = collectionLayout.layoutAttributesForItem(at: indexPath)!
         
-        return self.convert(layoutAttributes.frame, from: collectionLayout.collectionView)
+        return convert(layoutAttributes.frame, from: collectionLayout.collectionView)
     }
 }
 
 extension MenuView: UICollectionViewDataSource {
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: CellIdentifier,
-            for: indexPath
-        ) as? MenuCell
-
-        // compatibility with Swift 1.1 & 1.2
-        cell?.object = items[(indexPath as NSIndexPath).item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier,for: indexPath) as! MenuCell
+        cell.object = items[indexPath.item]
         
-        return cell!
+        return cell
     }
 }
 
 extension MenuView: UICollectionViewDelegate {
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex = (indexPath as NSIndexPath).item
-        delegate?.menu(self, didSelectItemAtIndex: selectedIndex!)
+        selectedIndex = indexPath.item
+        delegate?.menu(self, didSelectItemAt: selectedIndex!)
         
         UIView.animate(withDuration: 0.2, delay: 0.4, options: [], animations: {
             self.revealed = false
         }, completion: nil)
+    }
+}
+
+class MV: MenuView {
+    override func frameOfItem(at index: Int) -> CGRect {
+        return .zero
     }
 }

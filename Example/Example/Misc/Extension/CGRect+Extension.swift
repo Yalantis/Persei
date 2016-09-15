@@ -4,9 +4,10 @@ import Foundation
 import CoreGraphics
 
 extension CGRect {
+    
     init(boundingCenter center: CGPoint, radius: CGFloat) {
         assert(0 <= radius, "radius must be a positive value")
         
-        self = CGRect(origin: center, size: CGSize.zero).insetBy(dx: -radius, dy: -radius)
+        self = CGRect(origin: center, size: .zero).insetBy(dx: -radius, dy: -radius)
     }
 }

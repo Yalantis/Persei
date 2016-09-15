@@ -1,14 +1,14 @@
 // For License please refer to LICENSE file in the root of Persei project
 
-import Foundation
 import UIKit
 
 class MenuCell: UICollectionViewCell {
+    
     // MARK: - Init
     fileprivate func commonInit() {
         backgroundView = UIView()
         
-        let views: [String: AnyObject] = ["imageView": imageView, "shadowView": shadowView]
+        let views = ["imageView": imageView, "shadowView": shadowView]
         
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false

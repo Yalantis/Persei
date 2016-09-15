@@ -1,14 +1,12 @@
 // For License please refer to LICENSE file in the root of Persei project
 
-import Foundation
 import UIKit
-import QuartzCore
 
 private var ContentOffsetContext = 0
-
 private let DefaultContentHeight: CGFloat = 64
 
 open class StickyHeaderView: UIView {
+    
     // MARK: - Init
     func commonInit() {
         addSubview(backgroundImageView)
@@ -39,9 +37,9 @@ open class StickyHeaderView: UIView {
         super.willMove(toSuperview: newSuperview)
         
         if newSuperview == nil, let view = superview as? UIScrollView {
-            view.removeObserver(self, forKeyPath: "contentOffset", context: &ContentOffsetContext)
-            view.panGestureRecognizer.removeTarget(self, action: #selector(StickyHeaderView.handlePan(_:)))
-            appliedInsets = UIEdgeInsets.zero
+            view.removeObserver(self, forKeyPath:#keyPath(UIScrollView.contentOffset), context: &ContentOffsetContext)
+            view.panGestureRecognizer.removeTarget(self, action: #selector(handlePan))
+            appliedInsets = .zero
         }
     }
     
@@ -49,8 +47,8 @@ open class StickyHeaderView: UIView {
         super.didMoveToSuperview()
         
         if let view = superview as? UIScrollView {
-            view.addObserver(self, forKeyPath: "contentOffset", options: [.initial, .new], context: &ContentOffsetContext)
-            view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan(_:)))
+            view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
+            view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubview(toBack: self)
         }
     }
@@ -58,15 +56,14 @@ open class StickyHeaderView: UIView {
     fileprivate let contentContainer: UIView = {
         let view = UIView()
         view.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = .clear
 
         return view
     }()
     
-    fileprivate let shadowView = HeaderShadowView(frame: CGRect.zero)
+    fileprivate let shadowView = HeaderShadowView(frame: .zero)
     
-    @IBOutlet
-    open var contentView: UIView? {
+    @IBOutlet open var contentView: UIView? {
         didSet {
             oldValue?.removeFromSuperview()
             if let view = contentView {
@@ -121,9 +118,9 @@ open class StickyHeaderView: UIView {
         didSet {
             if oldValue != revealed {
                 if revealed {
-                    self.addInsets()
+                    addInsets()
                 } else {
-                    self.removeInsets()
+                    removeInsets()
                 }
             }
         }
@@ -144,7 +141,7 @@ open class StickyHeaderView: UIView {
             self.revealed = revealed
             
             if adjust {
-                self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                scrollView.contentOffset.y = -scrollView.contentInset.top
             }
         }
     }
@@ -158,9 +155,9 @@ open class StickyHeaderView: UIView {
     }
 
     // MARK: - Applyied Insets
-    fileprivate var appliedInsets: UIEdgeInsets = UIEdgeInsets.zero
+    fileprivate var appliedInsets: UIEdgeInsets = .zero
     fileprivate var insetsApplied: Bool {
-        return appliedInsets != UIEdgeInsets.zero
+        return appliedInsets != .zero
     }
 
     fileprivate func applyInsets(_ insets: UIEdgeInsets) {
@@ -178,12 +175,11 @@ open class StickyHeaderView: UIView {
 
     fileprivate func removeInsets() {
         assert(insetsApplied, "Internal inconsistency")
-        applyInsets(UIEdgeInsets.zero)
+        applyInsets(.zero)
     }
     
     // MARK: - ContentHeight
-    @IBInspectable
-    open var contentHeight: CGFloat = DefaultContentHeight {
+    @IBInspectable open var contentHeight: CGFloat = DefaultContentHeight {
         didSet {
             if superview != nil {
                 layoutToFit()
@@ -192,8 +188,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - Threshold
-    @IBInspectable
-    open var threshold: CGFloat = 0.3
+    @IBInspectable open var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
     fileprivate func applyContentContainerTransform(_ progress: CGFloat) {
@@ -215,8 +210,7 @@ open class StickyHeaderView: UIView {
         applyContentContainerTransform(progress)
     }
     
-    @objc
-    fileprivate func handlePan(_ recognizer: UIPanGestureRecognizer) {
+    @objc fileprivate func handlePan(_ recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .ended {
             let value = scrollView.normalizedContentOffset.y * (revealed ? 1 : -1)
             let triggeringValue = contentHeight * threshold

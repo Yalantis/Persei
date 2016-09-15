@@ -4,7 +4,7 @@ import QuartzCore
 
 class CircularRevealTransition: NSObject {
     
-    var completion: () -> Void = {}
+    var completion: (() -> Void)?
 
     fileprivate let layer: CALayer
     fileprivate let snapshotLayer: CALayer
@@ -33,12 +33,11 @@ class CircularRevealTransition: NSObject {
     }
     
     convenience init(layer: CALayer, center: CGPoint) {
-        let frame = layer.frame
-        
         let radius: CGFloat = {
+            let frame = layer.frame
             let x = max(center.x, frame.width - center.x)
             let y = max(center.y, frame.height - center.y)
-            return sqrt(x * x + y * y)
+            return hypot(x, y)
         }()
         
         self.init(layer: layer, center: center, startRadius: 0, endRadius: radius)
@@ -57,10 +56,10 @@ class CircularRevealTransition: NSObject {
 
 extension CircularRevealTransition: CAAnimationDelegate {
     
-    @objc func animationDidStop(_: CAAnimation, finished: Bool) {
+    func animationDidStop(_: CAAnimation, finished: Bool) {
         layer.mask = nil
         snapshotLayer.removeFromSuperlayer()
         
-        completion()
+        completion?()
     }
 }

@@ -2,7 +2,7 @@
 
 import Foundation
 
-@objc
-public protocol MenuViewDelegate {
-    func menu(_ menu: MenuView, didSelectItemAtIndex index: Int) -> Void
+@objc public protocol MenuViewDelegate {
+    
+    func menu(_ menu: MenuView, didSelectItemAt index: Int) -> Void
 }
