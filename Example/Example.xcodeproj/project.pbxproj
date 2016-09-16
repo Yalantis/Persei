@@ -37,13 +37,6 @@
 			remoteGlobalIDString = ADE973FA1A78F7AA0040B7C1;
 			remoteInfo = Persei;
 		};
-		ADE9744B1A78F8600040B7C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ADE974441A78F8600040B7C1 /* Persei.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = ADE974051A78F7AA0040B7C1;
-			remoteInfo = PerseiTests;
-		};
 		ADE9744D1A78F86A0040B7C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADE974441A78F8600040B7C1 /* Persei.xcodeproj */;
@@ -266,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				ADE9744A1A78F8600040B7C1 /* Persei.framework */,
-				ADE9744C1A78F8600040B7C1 /* PerseiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,13 +331,6 @@
 			fileType = wrapper.framework;
 			path = Persei.framework;
 			remoteRef = ADE974491A78F8600040B7C1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		ADE9744C1A78F8600040B7C1 /* PerseiTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PerseiTests.xctest;
-			remoteRef = ADE9744B1A78F8600040B7C1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
