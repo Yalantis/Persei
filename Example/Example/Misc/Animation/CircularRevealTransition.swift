@@ -2,18 +2,19 @@
 
 import QuartzCore
 
-class CircularRevealTransition {
-    var completion: () -> Void = {}
+class CircularRevealTransition: NSObject {
+    
+    var completion: (() -> Void)?
 
-    private let layer: CALayer
-    private let snapshotLayer: CALayer
-    private let mask: CAShapeLayer
-    private let animation: CABasicAnimation
+    fileprivate let layer: CALayer
+    fileprivate let snapshotLayer: CALayer
+    fileprivate let mask: CAShapeLayer
+    fileprivate let animation: CABasicAnimation
     
     // MARK: - Init
     init(layer: CALayer, center: CGPoint, startRadius: CGFloat, endRadius: CGFloat) {
-        let startPath = CGPathCreateWithEllipseInRect(CGRect(boundingCenter: center, radius: startRadius), nil)
-        let endPath = CGPathCreateWithEllipseInRect(CGRect(boundingCenter: center, radius: endRadius), nil)
+        let startPath = CGPath(ellipseIn: CGRect(boundingCenter: center, radius: startRadius), transform: nil)
+        let endPath = CGPath(ellipseIn: CGRect(boundingCenter: center, radius: endRadius), transform: nil)
 
         self.layer = layer
         snapshotLayer = CALayer()
@@ -26,21 +27,21 @@ class CircularRevealTransition {
         animation.duration = 0.6
         animation.fromValue = startPath
         animation.toValue = endPath
+        
+        super.init()
         animation.delegate = self
     }
     
     convenience init(layer: CALayer, center: CGPoint) {
-        let frame = layer.frame
-        
         let radius: CGFloat = {
+            let frame = layer.frame
             let x = max(center.x, frame.width - center.x)
             let y = max(center.y, frame.height - center.y)
-            return sqrt(x * x + y * y)
+            return hypot(x, y)
         }()
         
         self.init(layer: layer, center: center, startRadius: 0, endRadius: radius)
     }
-
 
     func start() {
         layer.superlayer!.insertSublayer(snapshotLayer, below: layer)
@@ -49,15 +50,16 @@ class CircularRevealTransition {
         layer.mask = mask
         mask.frame = layer.bounds
 
-        mask.addAnimation(animation, forKey: "reveal")
+        mask.add(animation, forKey: "reveal")
     }
+}
+
+extension CircularRevealTransition: CAAnimationDelegate {
     
-    // MARK: - CAAnimationDelegate
-    @objc
-    private func animationDidStop(_: CAAnimation, finished: Bool) {
+    func animationDidStop(_: CAAnimation, finished: Bool) {
         layer.mask = nil
         snapshotLayer.removeFromSuperlayer()
         
-        completion()
+        completion?()
     }
 }

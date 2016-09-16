@@ -3,6 +3,7 @@
 import UIKit
 
 extension UIScrollView {
+    
     var normalizedContentOffset: CGPoint {
         get {
             let contentOffset = self.contentOffset

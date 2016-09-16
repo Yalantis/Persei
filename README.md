@@ -1,4 +1,4 @@
-##Persei
+#Persei
 [![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei)
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
@@ -12,34 +12,29 @@ Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Ani
 
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
-## Swift 2.0
-Starting from 2.0 version Persei uses Swift 2.0. If you're using Swift 1.2 or 1.0, please, user 1.1 version of Persei.
+##Supported Swift versions
 
-##Requirements
-
-iOS 8.x, Swift 1.2 or 2.0
+- Swift 1: v. 1.1
+- Swift 2: v. 2
+- Swift 3: v. 3
 
 ##Installation
 
-####[CocoaPods](http://cocoapods.org)
+###[CocoaPods](http://cocoapods.org)
+
 ```ruby
 use_frameworks! 
 
-# Swift 2.0, 2.1
-pod 'Persei', '~> 2.0.1'
-
-# for Swift 1.1, 1.2 
-# pod 'Persei', '~> 1.1'
+pod 'Persei', '~> 3.0'
 ```
 
-*(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
+###[Carthage](http://github.com/Carthage/Carthage)
 
-####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 2.0.1
+github "Yalantis/Persei" ~> 3.0
 ```
 
-####Manual Installation
+###Manual Installation
 > For application targets that do not support embedded frameworks, such as iOS 7, Persei can be integrated by including source files from the Persei folder directly, optionally wrapping the top-level types into `struct Persei` to simulate a namespace. Yes, this sucks.
 
 1. Add Persei as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/yalantis/Persei.git`
@@ -65,6 +60,7 @@ tableView.addSubview(menu)
 
 ####Configuring items 
 In order to set items you need to instantiate array of `MenuItem`:
+
 ```swift
 let items = feedModes.map { mode: SomeYourCustomFeedMode -> MenuItem in
 	return MenuItem(image: mode.image)
@@ -88,7 +84,7 @@ menu.delegate = self
 
 // actual implementation
 extension FeedViewController: MenuViewDelegate {
-    func menu(menu: MenuView, didSelectItemAtIndex index: Int) {
+    func menu(menu: MenuView, didSelectItemAt index: Int) {
     	dataSource.mode = feedModes[index] // alter mode of dataSource
 
     	tableView.reload() // update tableView
@@ -174,10 +170,10 @@ P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on
 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-
+	
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
-
+	
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE

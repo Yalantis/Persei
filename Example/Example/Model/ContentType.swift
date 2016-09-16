@@ -1,19 +1,18 @@
 // For License please refer to LICENSE file in the root of Persei project
 
-import Foundation
-
 import UIKit
 
 enum ContentType: String, CustomStringConvertible {
-    case Music = "content_music.png"
-    case Films = "content_films.png"
+    
+    case music = "content_music.png"
+    case films = "content_films.png"
 
     func next() -> ContentType {
         switch self {
-        case .Music:
-            return .Films
-        case .Films:
-            return .Music
+        case .music:
+            return .films
+        case .films:
+            return .music
         }
     }
     
@@ -24,9 +23,9 @@ enum ContentType: String, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .Music:
+        case .music:
             return "Music"
-        case .Films:
+        case .films:
             return "Films"
         }
     }
