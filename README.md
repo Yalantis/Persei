@@ -1,4 +1,4 @@
-#Persei
+# Persei
 [![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei)
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
@@ -12,15 +12,15 @@ Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Ani
 
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
-##Supported Swift versions
+## Supported Swift versions
 
 - Swift 1: v. 1.1
 - Swift 2: v. 2
 - Swift 3: v. 3
 
-##Installation
+## Installation
 
-###[CocoaPods](http://cocoapods.org)
+### [CocoaPods](http://cocoapods.org)
 
 ```ruby
 use_frameworks! 
@@ -28,13 +28,13 @@ use_frameworks!
 pod 'Persei', '~> 3.0'
 ```
 
-###[Carthage](http://github.com/Carthage/Carthage)
+### [Carthage](http://github.com/Carthage/Carthage)
 
 ```ruby
 github "Yalantis/Persei" ~> 3.0
 ```
 
-###Manual Installation
+### Manual Installation
 > For application targets that do not support embedded frameworks, such as iOS 7, Persei can be integrated by including source files from the Persei folder directly, optionally wrapping the top-level types into `struct Persei` to simulate a namespace. Yes, this sucks.
 
 1. Add Persei as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/yalantis/Persei.git`
@@ -46,19 +46,19 @@ github "Yalantis/Persei" ~> 3.0
 7. Expand the "Link Binary With Libraries" group, and add `SideMenu.framework`
 8. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Persei.framework`.
 
-##Usage
-####Import `Persei` module
+## Usage
+#### Import `Persei` module
 ```swift
 import Persei
 ```
 
-####Init
+#### Init
 ```swift
 let menu = MenuView()    
 tableView.addSubview(menu)
 ```
 
-####Configuring items 
+#### Configuring items 
 In order to set items you need to instantiate array of `MenuItem`:
 
 ```swift
@@ -69,7 +69,7 @@ let items = feedModes.map { mode: SomeYourCustomFeedMode -> MenuItem in
 menu.items = items
 ```
 
-####Handling selection
+#### Handling selection
 You can specify selected item manually:
 ```swift
 menu.selectedIndex = 3
@@ -92,7 +92,7 @@ extension FeedViewController: MenuViewDelegate {
 }
 ```
 
-####Reveal menu manually
+#### Reveal menu manually
 Menu can be reveal as a result of button tap:
 ```swift
 func menuButtonSelected(sender: UIControl) {
@@ -103,14 +103,14 @@ func menuButtonSelected(sender: UIControl) {
 }
 ```
 
-####Content Gravity
+#### Content Gravity
 Use `contentViewGravity` to control sticking behavior. There are 3 available options: 
 
 - Top: `contentView` sticked to the top position of the view
 - Center: `contentView` is aligned to the middle of the streched view
 - Bottom: `contentView` sticked to the bottom
 
-####Customization
+#### Customization
 `MenuItem` declares set of attributes, that allow you to customize appearance of items: 
 ```swift
 struct MenuItem {
@@ -130,7 +130,7 @@ let menu = MenuView()
 menu.backgroundImage = UIImage(named: "top_menu_background")
 ```
 
-####Advanced customization
+#### Advanced customization
 - Can I place the UIImageView instead?
 - Sure! Just subclass / use `StickyHeaderView` directly. It offers layout, positioning and reveal control. All you have to do is to assign your custom view (animated nian-cat UIImageView) to `contentView`: 
 
@@ -158,7 +158,7 @@ We’d be really happy if you sent us links to your projects where you use our c
 
 P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on how to make UI for iOS (Android) better than better. Stay tuned!
 
-##License
+## License
 
 	The MIT License (MIT)
 
