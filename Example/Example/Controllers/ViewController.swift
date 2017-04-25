@@ -6,7 +6,7 @@ import Persei
 class ViewController: UITableViewController {
     
     @IBOutlet fileprivate weak var imageView: UIImageView!
-    fileprivate weak var menu: MenuView!
+    fileprivate var menu: MenuView!
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
