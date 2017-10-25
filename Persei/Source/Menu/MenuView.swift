@@ -106,7 +106,7 @@ extension MenuView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier,for: indexPath) as! MenuCell
-        cell.object = items[indexPath.item]
+        cell.apply(items[indexPath.item])
         
         return cell
     }

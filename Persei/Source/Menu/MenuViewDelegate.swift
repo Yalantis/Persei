@@ -4,5 +4,5 @@ import Foundation
 
 @objc public protocol MenuViewDelegate {
     
-    func menu(_ menu: MenuView, didSelectItemAt index: Int) -> Void
+    func menu(_ menu: MenuView, didSelectItemAt index: Int)
 }

@@ -4,6 +4,10 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
+    private let shadowView = UIView()
+    private let imageView = UIImageView()
+    private var value: MenuItem!
+
     // MARK: - Init
     private func commonInit() {
         backgroundView = UIView()
@@ -65,30 +69,23 @@ class MenuCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        object = nil
+        value = nil
     }
     
-    // MARK: - ShadowView
-    private let shadowView = UIView()
-    
-    // MARK: - ImageView
-    private let imageView = UIImageView()
-    
-    // MARK: - Object
-    var object: MenuItem? {
-        didSet {
-            imageView.image = object?.image
-            imageView.highlightedImage = object?.highlightedImage
-            shadowView.backgroundColor = object?.shadowColor
-            
-            updateSelectionVisibility()
-        }
+    func apply(_ value: MenuItem) {
+        self.value = value
+        
+        imageView.image = value.image
+        imageView.highlightedImage = value.highlightedImage
+        shadowView.backgroundColor = value.shadowColor
+        
+        updateSelectionVisibility()
     }
     
     // MARK: - Selection
     private func updateSelectionVisibility() {
         imageView.isHighlighted = isSelected
-        backgroundView?.backgroundColor = isSelected ? object?.highlightedBackgroundColor : object?.backgroundColor
+        backgroundView?.backgroundColor = isSelected ? value?.highlightedBackgroundColor : value?.backgroundColor
     }
     
     override var isSelected: Bool {
