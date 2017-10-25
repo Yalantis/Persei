@@ -11,7 +11,7 @@ class ViewController: UITableViewController {
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loadMenu()
         
         title = model.description
