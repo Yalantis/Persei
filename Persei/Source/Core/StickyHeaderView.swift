@@ -9,6 +9,8 @@ open class StickyHeaderView: UIView {
     
     // MARK: - Init
     func commonInit() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(backgroundImageView)
         addSubview(contentContainer)
 
@@ -133,7 +135,7 @@ open class StickyHeaderView: UIView {
             }, completion: { completed in
                 if adjust {
                     UIView.animate(withDuration: 0.2, animations: {
-                        self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                        self.scrollView.contentOffset.y = -self.scrollView.effectiveContentInset.top
                     }) 
                 }
             })
@@ -141,7 +143,7 @@ open class StickyHeaderView: UIView {
             self.revealed = revealed
             
             if adjust {
-                scrollView.contentOffset.y = -scrollView.contentInset.top
+                scrollView.contentOffset.y = -scrollView.effectiveContentInset.top
             }
         }
     }
@@ -161,11 +163,11 @@ open class StickyHeaderView: UIView {
     }
 
     private func applyInsets(_ insets: UIEdgeInsets) {
-        let originalInset = scrollView.contentInset - appliedInsets
+        let originalInset = scrollView.effectiveContentInset - appliedInsets
         let targetInset = originalInset + insets
 
         appliedInsets = insets
-        scrollView.contentInset = targetInset
+        scrollView.effectiveContentInset = targetInset
     }
     
     private func addInsets() {
@@ -222,7 +224,7 @@ open class StickyHeaderView: UIView {
                 setRevealed(!revealed, animated: true, adjustContentOffset: adjust)
             } else if 0 < bounds.height && bounds.height < contentHeight {
                 UIView.animate(withDuration: 0.3, animations: {
-                    self.scrollView.contentOffset.y = -self.scrollView.contentInset.top
+                    self.scrollView.contentOffset.y = -self.scrollView.effectiveContentInset.top
                 }) 
             }
         }
@@ -252,7 +254,7 @@ open class StickyHeaderView: UIView {
     }
 
     private func layoutToFit() {
-        let origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
+        let origin = scrollView.contentOffset.y + scrollView.effectiveContentInset.top - appliedInsets.top
         frame.origin.y = origin
         
         sizeToFit()

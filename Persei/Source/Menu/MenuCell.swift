@@ -12,47 +12,26 @@ class MenuCell: UICollectionViewCell {
     private func commonInit() {
         backgroundView = UIView()
         
-        let views = ["imageView": imageView, "shadowView": shadowView]
+        if #available(iOS 11.0, *) {
+            insetsLayoutMarginsFromSafeArea = false
+        }
         
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "|-[imageView]-|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-[imageView]-|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        
+    
+        imageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor).isActive = true
+
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(shadowView)
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "|[shadowView]|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:[shadowView(2)]|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
+        
+        shadowView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        shadowView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        shadowView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     override init(frame: CGRect) {
