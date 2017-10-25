@@ -86,7 +86,7 @@ class MenuCell: UICollectionViewCell {
     }
     
     // MARK: - Selection
-    fileprivate func updateSelectionVisibility() {
+    private func updateSelectionVisibility() {
         imageView.isHighlighted = isSelected
         backgroundView?.backgroundColor = isSelected ? object?.highlightedBackgroundColor : object?.backgroundColor
     }

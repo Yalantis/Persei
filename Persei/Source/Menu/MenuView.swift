@@ -21,7 +21,7 @@ open class MenuView: StickyHeaderView {
     }
     
     // MARK: - FlowLayout
-    fileprivate lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
@@ -29,7 +29,7 @@ open class MenuView: StickyHeaderView {
     }()
     
     // MARK: - CollectionView
-    fileprivate lazy var collectionView: UICollectionView = { [unowned self] in
+    private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionLayout)
         view.clipsToBounds = false
         view.backgroundColor = .clear

@@ -20,7 +20,7 @@ class HeaderShadowView: UIView {
         setupLayer()
     }
     
-    fileprivate func setupLayer() {
+    private func setupLayer() {
         if let gradientLayer = layer as? CAGradientLayer {
             gradientLayer.colors = [UIColor(white: 0, alpha: 0.5).cgColor, UIColor.clear.cgColor]
             gradientLayer.startPoint = CGPoint(x: 0.5, y: 1)

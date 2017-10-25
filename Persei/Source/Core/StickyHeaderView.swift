@@ -53,7 +53,7 @@ open class StickyHeaderView: UIView {
         }
     }
 
-    fileprivate let contentContainer: UIView = {
+    private let contentContainer: UIView = {
         let view = UIView()
         view.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         view.backgroundColor = .clear
@@ -61,7 +61,7 @@ open class StickyHeaderView: UIView {
         return view
     }()
     
-    fileprivate let shadowView = HeaderShadowView(frame: .zero)
+    private let shadowView = HeaderShadowView(frame: .zero)
     
     @IBOutlet open var contentView: UIView? {
         didSet {
@@ -91,7 +91,7 @@ open class StickyHeaderView: UIView {
     open var contentViewGravity: ContentViewGravity = .center
     
     // MARK: - Background Image
-    fileprivate let backgroundImageView = UIImageView()
+    private let backgroundImageView = UIImageView()
 
     @IBInspectable
     open var backgroundImage: UIImage? {
@@ -102,7 +102,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
-    fileprivate var scrollView: UIScrollView! { return superview as! UIScrollView }
+    private var scrollView: UIScrollView! { return superview as! UIScrollView }
     
     // MARK: - KVO
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -126,7 +126,7 @@ open class StickyHeaderView: UIView {
         }
     }
     
-    fileprivate func setRevealed(_ revealed: Bool, animated: Bool, adjustContentOffset adjust: Bool) {
+    private func setRevealed(_ revealed: Bool, animated: Bool, adjustContentOffset adjust: Bool) {
         if animated {
             UIView.animate(withDuration: 0.2, delay: 0, options: .beginFromCurrentState, animations: {
                 self.revealed = revealed
@@ -150,17 +150,17 @@ open class StickyHeaderView: UIView {
         setRevealed(revealed, animated: animated, adjustContentOffset: true)
     }
 
-    fileprivate func fractionRevealed() -> CGFloat {
+    private func fractionRevealed() -> CGFloat {
         return min(bounds.height / contentHeight, 1)
     }
 
     // MARK: - Applyied Insets
-    fileprivate var appliedInsets: UIEdgeInsets = .zero
-    fileprivate var insetsApplied: Bool {
+    private var appliedInsets: UIEdgeInsets = .zero
+    private var insetsApplied: Bool {
         return appliedInsets != .zero
     }
 
-    fileprivate func applyInsets(_ insets: UIEdgeInsets) {
+    private func applyInsets(_ insets: UIEdgeInsets) {
         let originalInset = scrollView.contentInset - appliedInsets
         let targetInset = originalInset + insets
 
@@ -168,12 +168,12 @@ open class StickyHeaderView: UIView {
         scrollView.contentInset = targetInset
     }
     
-    fileprivate func addInsets() {
+    private func addInsets() {
         assert(!insetsApplied, "Internal inconsistency")
         applyInsets(UIEdgeInsets(top: contentHeight, left: 0, bottom: 0, right: 0))
     }
 
-    fileprivate func removeInsets() {
+    private func removeInsets() {
         assert(insetsApplied, "Internal inconsistency")
         applyInsets(.zero)
     }
@@ -191,7 +191,7 @@ open class StickyHeaderView: UIView {
     @IBInspectable open var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
-    fileprivate func applyContentContainerTransform(_ progress: CGFloat) {
+    private func applyContentContainerTransform(_ progress: CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500
         let angle = (1 - progress) * CGFloat(M_PI_2)
@@ -200,7 +200,7 @@ open class StickyHeaderView: UIView {
         contentContainer.layer.transform = transform
     }
     
-    fileprivate func didScroll() {
+    private func didScroll() {
         layoutToFit()
         layoutIfNeeded()
         
@@ -210,7 +210,7 @@ open class StickyHeaderView: UIView {
         applyContentContainerTransform(progress)
     }
     
-    @objc fileprivate func handlePan(_ recognizer: UIPanGestureRecognizer) {
+    @objc private func handlePan(_ recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .ended {
             let value = scrollView.normalizedContentOffset.y * (revealed ? 1 : -1)
             let triggeringValue = contentHeight * threshold
@@ -250,7 +250,7 @@ open class StickyHeaderView: UIView {
         shadowView.frame = contentContainer.bounds.insetBy(dx: -round(contentContainer.bounds.width / 16), dy: 0)
     }
 
-    fileprivate func layoutToFit() {
+    private func layoutToFit() {
         let origin = scrollView.contentOffset.y + scrollView.contentInset.top - appliedInsets.top
         frame.origin.y = origin
         
