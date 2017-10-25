@@ -1,4 +1,4 @@
-##Persei
+# Persei
 [![Build Status](https://travis-ci.org/Yalantis/Persei.svg)](https://travis-ci.org/Yalantis/Persei)
 [![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/Yalantis/Persei/blob/master/LICENSE)
 
@@ -12,34 +12,29 @@ Check this [project on Dribbble](https://dribbble.com/shots/1706861-Top-Menu-Ani
 
 Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-Animations-Interactions%20)
 
-## Swift 2.0
-Starting from 2.0 version Persei uses Swift 2.0. If you're using Swift 1.2 or 1.0, please, user 1.1 version of Persei.
+## Supported Swift versions
 
-##Requirements
+- Swift 1: v. 1.1
+- Swift 2: v. 2
+- Swift 3: v. 3
 
-iOS 8.x, Swift 1.2 or 2.0
+## Installation
 
-##Installation
+### [CocoaPods](http://cocoapods.org)
 
-####[CocoaPods](http://cocoapods.org)
 ```ruby
 use_frameworks! 
 
-# Swift 2.0, 2.1
-pod 'Persei', '~> 2.0.1'
-
-# for Swift 1.1, 1.2 
-# pod 'Persei', '~> 1.1'
+pod 'Persei', '~> 3.0'
 ```
 
-*(CocoaPods v0.36 or later required. See [this blog post](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) for details.)*
+### [Carthage](http://github.com/Carthage/Carthage)
 
-####[Carthage](http://github.com/Carthage/Carthage)
 ```ruby
-github "Yalantis/Persei" ~> 2.0.1
+github "Yalantis/Persei" ~> 3.0
 ```
 
-####Manual Installation
+### Manual Installation
 > For application targets that do not support embedded frameworks, such as iOS 7, Persei can be integrated by including source files from the Persei folder directly, optionally wrapping the top-level types into `struct Persei` to simulate a namespace. Yes, this sucks.
 
 1. Add Persei as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/yalantis/Persei.git`
@@ -51,20 +46,21 @@ github "Yalantis/Persei" ~> 2.0.1
 7. Expand the "Link Binary With Libraries" group, and add `SideMenu.framework`
 8. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `Persei.framework`.
 
-##Usage
-####Import `Persei` module
+## Usage
+#### Import `Persei` module
 ```swift
 import Persei
 ```
 
-####Init
+#### Init
 ```swift
 let menu = MenuView()    
 tableView.addSubview(menu)
 ```
 
-####Configuring items 
+#### Configuring items 
 In order to set items you need to instantiate array of `MenuItem`:
+
 ```swift
 let items = feedModes.map { mode: SomeYourCustomFeedMode -> MenuItem in
 	return MenuItem(image: mode.image)
@@ -73,7 +69,7 @@ let items = feedModes.map { mode: SomeYourCustomFeedMode -> MenuItem in
 menu.items = items
 ```
 
-####Handling selection
+#### Handling selection
 You can specify selected item manually:
 ```swift
 menu.selectedIndex = 3
@@ -88,7 +84,7 @@ menu.delegate = self
 
 // actual implementation
 extension FeedViewController: MenuViewDelegate {
-    func menu(menu: MenuView, didSelectItemAtIndex index: Int) {
+    func menu(menu: MenuView, didSelectItemAt index: Int) {
     	dataSource.mode = feedModes[index] // alter mode of dataSource
 
     	tableView.reload() // update tableView
@@ -96,7 +92,7 @@ extension FeedViewController: MenuViewDelegate {
 }
 ```
 
-####Reveal menu manually
+#### Reveal menu manually
 Menu can be reveal as a result of button tap:
 ```swift
 func menuButtonSelected(sender: UIControl) {
@@ -107,14 +103,14 @@ func menuButtonSelected(sender: UIControl) {
 }
 ```
 
-####Content Gravity
+#### Content Gravity
 Use `contentViewGravity` to control sticking behavior. There are 3 available options: 
 
 - Top: `contentView` sticked to the top position of the view
 - Center: `contentView` is aligned to the middle of the streched view
 - Bottom: `contentView` sticked to the bottom
 
-####Customization
+#### Customization
 `MenuItem` declares set of attributes, that allow you to customize appearance of items: 
 ```swift
 struct MenuItem {
@@ -134,7 +130,7 @@ let menu = MenuView()
 menu.backgroundImage = UIImage(named: "top_menu_background")
 ```
 
-####Advanced customization
+#### Advanced customization
 - Can I place the UIImageView instead?
 - Sure! Just subclass / use `StickyHeaderView` directly. It offers layout, positioning and reveal control. All you have to do is to assign your custom view (animated nian-cat UIImageView) to `contentView`: 
 
@@ -156,11 +152,17 @@ headerView.threshold = 0.5
 ```
 Threshold is a float value from 0 to 1, specifies how much user needs to drag header for reveal.
 
-##License
+#### Let us know!
+
+We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the animation. 
+
+P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on how to make UI for iOS (Android) better than better. Stay tuned!
+
+## License
 
 	The MIT License (MIT)
 
-	Copyright © 2015 Yalantis
+	Copyright © 2017 Yalantis
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -168,10 +170,10 @@ Threshold is a float value from 0 to 1, specifies how much user needs to drag he
 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-
+	
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
-
+	
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE

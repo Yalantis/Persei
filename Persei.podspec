@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
 	spec.name = "Persei"
-	spec.version = "2.0.1"
+	spec.version = '3.0.1'
 	
 	spec.homepage = "https://github.com/Yalantis/Persei"	
 	spec.summary = "Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!"
@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
 	spec.platform     = :ios, '8.0'
   	spec.ios.deployment_target = '8.0'
 
-	spec.source       = { :git => "https://github.com/Yalantis/Persei.git", :tag => "2.0.1" }
+	spec.source       = { :git => "https://github.com/Yalantis/Persei.git", :tag => spec.version }
   	
   	spec.source_files = 'Persei/Source/**/*.swift'
   	spec.module_name  = 'Persei'
