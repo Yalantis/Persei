@@ -5,7 +5,7 @@ import UIKit
 class MenuCell: UICollectionViewCell {
     
     // MARK: - Init
-    fileprivate func commonInit() {
+    private func commonInit() {
         backgroundView = UIView()
         
         let views = ["imageView": imageView, "shadowView": shadowView]
@@ -69,10 +69,10 @@ class MenuCell: UICollectionViewCell {
     }
     
     // MARK: - ShadowView
-    fileprivate let shadowView = UIView()
+    private let shadowView = UIView()
     
     // MARK: - ImageView
-    fileprivate let imageView = UIImageView()
+    private let imageView = UIImageView()
     
     // MARK: - Object
     var object: MenuItem? {
@@ -86,7 +86,7 @@ class MenuCell: UICollectionViewCell {
     }
     
     // MARK: - Selection
-    fileprivate func updateSelectionVisibility() {
+    private func updateSelectionVisibility() {
         imageView.isHighlighted = isSelected
         backgroundView?.backgroundColor = isSelected ? object?.highlightedBackgroundColor : object?.backgroundColor
     }

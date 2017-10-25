@@ -21,7 +21,7 @@ open class MenuView: StickyHeaderView {
     }
     
     // MARK: - FlowLayout
-    fileprivate lazy var collectionLayout: UICollectionViewFlowLayout = { [unowned self] in
+    private lazy var collectionLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
@@ -29,7 +29,7 @@ open class MenuView: StickyHeaderView {
     }()
     
     // MARK: - CollectionView
-    fileprivate lazy var collectionView: UICollectionView = { [unowned self] in
+    private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: self.collectionLayout)
         view.clipsToBounds = false
         view.backgroundColor = .clear
@@ -76,7 +76,7 @@ open class MenuView: StickyHeaderView {
         }
     }
     
-    fileprivate func updateContentLayout() {
+    private func updateContentLayout() {
         let inset = ceil(contentHeight / 6.0)
         let spacing = floor(inset / 2.0)
     
@@ -90,7 +90,7 @@ open class MenuView: StickyHeaderView {
 
 public extension MenuView {
     
-    func frameOfItem(at index: Int) -> CGRect {
+    public func frameOfItem(at index: Int) -> CGRect {
         let indexPath = IndexPath(item: index, section: 0)
         let layoutAttributes = collectionLayout.layoutAttributesForItem(at: indexPath)!
         
@@ -121,11 +121,5 @@ extension MenuView: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.2, delay: 0.4, options: [], animations: {
             self.revealed = false
         }, completion: nil)
-    }
-}
-
-class MV: MenuView {
-    override func frameOfItem(at index: Int) -> CGRect {
-        return .zero
     }
 }
