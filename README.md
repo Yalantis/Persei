@@ -14,16 +14,19 @@ Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-
 
 ## Supported Swift versions
 
-- Swift 1: v. 1.1
-- Swift 2: v. 2
-- Swift 3: v. 3
+| Swift Version | Persei |
+|:---:|:---:|
+| 1.x | 1.1 |
+| 2.x | 2.0 |
+| 3.x | 3.0 |
+| **4.x** | **3.1** |
 
 ## Installation
 
 ### [CocoaPods](http://cocoapods.org)
 
 ```ruby
-use_frameworks! 
+use_frameworks!
 
 pod 'Persei', '~> 3.0'
 ```
@@ -58,7 +61,7 @@ let menu = MenuView()
 tableView.addSubview(menu)
 ```
 
-#### Configuring items 
+#### Configuring items
 In order to set items you need to instantiate array of `MenuItem`:
 
 ```swift
@@ -75,11 +78,11 @@ You can specify selected item manually:
 menu.selectedIndex = 3
 ```
 
-Note, that selectedIndex declared as `Int?` and will be `nil` in case of `menu.items = nil`. 
+Note, that selectedIndex declared as `Int?` and will be `nil` in case of `menu.items = nil`.
 
 Also, you can implement `MenuViewDelegate` to be notified about selection change:
 ```swift
-// during init 
+// during init
 menu.delegate = self
 
 // actual implementation
@@ -104,49 +107,49 @@ func menuButtonSelected(sender: UIControl) {
 ```
 
 #### Content Gravity
-Use `contentViewGravity` to control sticking behavior. There are 3 available options: 
+Use `contentViewGravity` to control sticking behavior. There are 3 available options:
 
 - Top: `contentView` sticked to the top position of the view
 - Center: `contentView` is aligned to the middle of the streched view
 - Bottom: `contentView` sticked to the bottom
 
 #### Customization
-`MenuItem` declares set of attributes, that allow you to customize appearance of items: 
+`MenuItem` declares set of attributes, that allow you to customize appearance of items:
 ```swift
 struct MenuItem {
     var image: UIImage // default image
     var highlightedImage: UIImage? // image used during selection
-    
+
     var backgroundColor: UIColor // default background color
     var highlightedBackgroundColor: UIColor // background color used during selection
-    
+
     var shadowColor: UIColor // color of bottom 2px shadow line
 }
 ```
 
-Also you're free to configure background of `MenuView` by utilizing `backgroundColor` or `backgroundImage`. Note, that image should be resizeable: 
+Also you're free to configure background of `MenuView` by utilizing `backgroundColor` or `backgroundImage`. Note, that image should be resizeable:
 ```swift
-let menu = MenuView() 
+let menu = MenuView()
 menu.backgroundImage = UIImage(named: "top_menu_background")
 ```
 
 #### Advanced customization
 - Can I place the UIImageView instead?
-- Sure! Just subclass / use `StickyHeaderView` directly. It offers layout, positioning and reveal control. All you have to do is to assign your custom view (animated nian-cat UIImageView) to `contentView`: 
+- Sure! Just subclass / use `StickyHeaderView` directly. It offers layout, positioning and reveal control. All you have to do is to assign your custom view (animated nian-cat UIImageView) to `contentView`:
 
 ```swift
 let headerView = StickyHeaderView()
-let imageView = UIImageView(...) 
+let imageView = UIImageView(...)
 
 headerView.contentView = imageView
 ```
 
-Obviously, your custom view can have heigh different from default: 
+Obviously, your custom view can have heigh different from default:
 ```swift
 headerView.contentHeight = image.size.height
 ```
 
-As well as control distance to trigger open/close of the header: 
+As well as control distance to trigger open/close of the header:
 ```swift
 headerView.threshold = 0.5
 ```
@@ -154,7 +157,7 @@ Threshold is a float value from 0 to 1, specifies how much user needs to drag he
 
 #### Let us know!
 
-We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the animation. 
+We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the animation.
 
 P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on how to make UI for iOS (Android) better than better. Stay tuned!
 
@@ -170,10 +173,10 @@ P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on
 	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 	copies of the Software, and to permit persons to whom the Software is
 	furnished to do so, subject to the following conditions:
-	
+
 	The above copyright notice and this permission notice shall be included in
 	all copies or substantial portions of the Software.
-	
+
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
