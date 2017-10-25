@@ -4,51 +4,34 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
+    private let shadowView = UIView()
+    private let imageView = UIImageView()
+    private var value: MenuItem!
+
     // MARK: - Init
-    fileprivate func commonInit() {
+    private func commonInit() {
         backgroundView = UIView()
         
-        let views = ["imageView": imageView, "shadowView": shadowView]
+        if #available(iOS 11.0, *) {
+            insetsLayoutMarginsFromSafeArea = false
+        }
         
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "|-[imageView]-|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-[imageView]-|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        
+    
+        imageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor).isActive = true
+
         shadowView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(shadowView)
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "|[shadowView]|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
-        contentView.addConstraints(
-            NSLayoutConstraint.constraints(
-                withVisualFormat: "V:[shadowView(2)]|",
-                options: [],
-                metrics: nil,
-                views: views
-            )
-        )
+        
+        shadowView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        shadowView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        shadowView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     override init(frame: CGRect) {
@@ -65,30 +48,23 @@ class MenuCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        object = nil
+        value = nil
     }
     
-    // MARK: - ShadowView
-    fileprivate let shadowView = UIView()
-    
-    // MARK: - ImageView
-    fileprivate let imageView = UIImageView()
-    
-    // MARK: - Object
-    var object: MenuItem? {
-        didSet {
-            imageView.image = object?.image
-            imageView.highlightedImage = object?.highlightedImage
-            shadowView.backgroundColor = object?.shadowColor
-            
-            updateSelectionVisibility()
-        }
+    func apply(_ value: MenuItem) {
+        self.value = value
+        
+        imageView.image = value.image
+        imageView.highlightedImage = value.highlightedImage
+        shadowView.backgroundColor = value.shadowColor
+        
+        updateSelectionVisibility()
     }
     
     // MARK: - Selection
-    fileprivate func updateSelectionVisibility() {
+    private func updateSelectionVisibility() {
         imageView.isHighlighted = isSelected
-        backgroundView?.backgroundColor = isSelected ? object?.highlightedBackgroundColor : object?.backgroundColor
+        backgroundView?.backgroundColor = isSelected ? value?.highlightedBackgroundColor : value?.backgroundColor
     }
     
     override var isSelected: Bool {
