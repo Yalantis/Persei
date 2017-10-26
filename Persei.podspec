@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name = "Persei"
-    spec.version = '3.1'
+    spec.version = '3.1.1'
 
     spec.homepage = "https://github.com/Yalantis/Persei"
     spec.summary = "Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!"
@@ -19,4 +19,3 @@ Pod::Spec.new do |spec|
     spec.module_name  = 'Persei'
     spec.requires_arc = true
 end
-
