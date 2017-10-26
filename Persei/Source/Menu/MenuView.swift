@@ -86,9 +86,6 @@ open class MenuView: StickyHeaderView {
 
         collectionLayout.itemSize = CGSize(width: contentHeight - inset * 2, height: contentHeight - inset * 2)
     }
-}
-
-public extension MenuView {
     
     public func frameOfItem(at index: Int) -> CGRect {
         let indexPath = IndexPath(item: index, section: 0)
