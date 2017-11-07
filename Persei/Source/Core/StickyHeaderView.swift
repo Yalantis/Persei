@@ -53,6 +53,11 @@ open class StickyHeaderView: UIView {
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubview(toBack: self)
         }
+        if needRevealed {
+            addInsets()
+        } else {
+            removeInsets()
+        }
     }
 
     private let contentContainer: UIView = {
@@ -116,10 +121,15 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - State
+    
+    fileprivate var needRevealed = false
+    
     open var revealed: Bool = false {
         didSet {
             if oldValue != revealed {
-                if revealed {
+                if superview == nil {
+                    needRevealed = revealed
+                } else if revealed {
                     addInsets()
                 } else {
                     removeInsets()
