@@ -51,7 +51,7 @@ open class StickyHeaderView: UIView {
         if let view = superview as? UIScrollView {
             view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
-            view.sendSubview(toBack: self)
+            view.sendSubviewToBack(self)
         }
     }
 
@@ -72,7 +72,7 @@ open class StickyHeaderView: UIView {
                 view.frame = contentContainer.bounds
                 view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 contentContainer.addSubview(view)
-                contentContainer.sendSubview(toBack: view)
+                contentContainer.sendSubviewToBack(view)
             }
         }
     }
@@ -104,7 +104,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
-    private var scrollView: UIScrollView! { return superview as! UIScrollView }
+    private var scrollView: UIScrollView! { return (superview as! UIScrollView) }
     
     // MARK: - KVO
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -261,13 +261,9 @@ open class StickyHeaderView: UIView {
     }
     
     open override func sizeThatFits(_: CGSize) -> CGSize {
-        var height: CGFloat = 0
-        if revealed {
-            height = appliedInsets.top - scrollView.normalizedContentOffset.y
-        } else {
-            height = scrollView.normalizedContentOffset.y * -1
-        }
-
+        let revealedHeight: CGFloat = appliedInsets.top - scrollView.normalizedContentOffset.y
+        let collapsedHeight: CGFloat = scrollView.normalizedContentOffset.y * -1
+        let height: CGFloat = revealed ? revealedHeight : collapsedHeight
         let output = CGSize(width: scrollView.bounds.width, height: max(height, 0))
         
         return output
