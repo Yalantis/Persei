@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name = "Persei"
-    spec.version = '3.1.1'
+    spec.version = '4.0.0'
 
     spec.homepage = "https://github.com/Yalantis/Persei"
     spec.summary = "Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!"
@@ -10,8 +10,8 @@ Pod::Spec.new do |spec|
     spec.license = { :type => "MIT", :file => "LICENSE" }
     spec.social_media_url = "https://twitter.com/yalantis"
 
-    spec.platform = :ios, '9.0'
-    spec.ios.deployment_target = '9.0'
+    spec.platform = :ios, '11.0'
+    spec.ios.deployment_target = '11.0'
 
     spec.source = { :git => "https://github.com/Yalantis/Persei.git", :tag => spec.version }
 
