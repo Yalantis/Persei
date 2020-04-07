@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     spec.name = "Persei"
     spec.version = '4.0.0'
-
+    spec.swift_version = '5.0'
     spec.homepage = "https://github.com/Yalantis/Persei"
     spec.summary = "Animated top menu for UITableView / UICollectionView / UIScrollView in Swift!"
     spec.screenshot = "https://raw.githubusercontent.com/Yalantis/Persei/master/Assets/animation.gif"
