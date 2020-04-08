@@ -51,8 +51,9 @@ open class StickyHeaderView: UIView {
         if let view = superview as? UIScrollView {
             view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
-            view.sendSubview(toBack: self)
+            view.sendSubviewToBack(self)
         }
+
         if needRevealed && !insetsApplied {
             addInsets()
 				} else if insetsApplied {
@@ -77,7 +78,7 @@ open class StickyHeaderView: UIView {
                 view.frame = contentContainer.bounds
                 view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                 contentContainer.addSubview(view)
-                contentContainer.sendSubview(toBack: view)
+                contentContainer.sendSubviewToBack(view)
             }
         }
     }
@@ -109,7 +110,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
-    private var scrollView: UIScrollView! { return superview as! UIScrollView }
+    private var scrollView: UIScrollView { return superview as! UIScrollView }
     
     // MARK: - KVO
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
