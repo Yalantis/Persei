@@ -41,7 +41,10 @@ open class StickyHeaderView: UIView {
         if newSuperview == nil, let view = superview as? UIScrollView {
             view.removeObserver(self, forKeyPath:#keyPath(UIScrollView.contentOffset), context: &ContentOffsetContext)
             view.panGestureRecognizer.removeTarget(self, action: #selector(handlePan))
-            appliedInsets = .zero
+            
+            if insetsApplied {
+                removeInsets()
+            }
         }
     }
     
@@ -52,12 +55,12 @@ open class StickyHeaderView: UIView {
             view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubviewToBack(self)
-        }
-
-        if needRevealed && !insetsApplied {
-            addInsets()
-				} else if insetsApplied {
-            removeInsets()
+					
+            if needRevealed && !insetsApplied {
+                addInsets()
+            } else if insetsApplied {
+                removeInsets()
+            }
         }
     }
 
