@@ -53,9 +53,9 @@ open class StickyHeaderView: UIView {
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubview(toBack: self)
         }
-        if needRevealed {
+        if needRevealed && !insetsApplied {
             addInsets()
-        } else {
+				} else if insetsApplied {
             removeInsets()
         }
     }
