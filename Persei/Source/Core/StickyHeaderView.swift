@@ -8,6 +8,7 @@ private let DefaultContentHeight: CGFloat = 64
 open class StickyHeaderView: UIView {
     
     // MARK: - Init
+    
     func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -35,13 +36,17 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - View lifecycle
+    
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         if newSuperview == nil, let view = superview as? UIScrollView {
             view.removeObserver(self, forKeyPath:#keyPath(UIScrollView.contentOffset), context: &ContentOffsetContext)
             view.panGestureRecognizer.removeTarget(self, action: #selector(handlePan))
-            appliedInsets = .zero
+            
+            if insetsApplied {
+                removeInsets()
+            }
         }
     }
     
@@ -52,6 +57,12 @@ open class StickyHeaderView: UIView {
             view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubviewToBack(self)
+            
+            if needRevealed && !insetsApplied {
+                addInsets()
+            } else if insetsApplied {
+                removeInsets()
+            }
         }
     }
 
@@ -104,6 +115,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
+
     private var scrollView: UIScrollView {
         guard
             let scrollView = superview as? UIScrollView
@@ -113,6 +125,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - KVO
+    
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if context == &ContentOffsetContext {
             didScroll()
@@ -122,10 +135,15 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - State
+    
+    fileprivate var needRevealed = false
+    
     open var revealed: Bool = false {
         didSet {
             if oldValue != revealed {
-                if revealed {
+                if superview == nil {
+                    needRevealed = revealed
+                } else if revealed {
                     addInsets()
                 } else {
                     removeInsets()
@@ -163,6 +181,7 @@ open class StickyHeaderView: UIView {
     }
 
     // MARK: - Applyied Insets
+    
     private var appliedInsets: UIEdgeInsets = .zero
     private var insetsApplied: Bool {
         return appliedInsets != .zero
@@ -187,6 +206,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ContentHeight
+    
     @IBInspectable open var contentHeight: CGFloat = DefaultContentHeight {
         didSet {
             if superview != nil {
@@ -196,9 +216,11 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - Threshold
+    
     @IBInspectable open var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
+    
     private func applyContentContainerTransform(_ progress: CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500
@@ -237,6 +259,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - Layout
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
 

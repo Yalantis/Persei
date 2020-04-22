@@ -4,8 +4,8 @@ import UIKit
 
 enum ContentType: String, CustomStringConvertible {
     
-    case music = "content_music.png"
-    case films = "content_films.png"
+    case music = "contents_music"
+    case films = "contents_films"
 
     func next() -> ContentType {
         switch self {
