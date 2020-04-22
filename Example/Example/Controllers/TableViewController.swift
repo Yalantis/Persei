@@ -3,7 +3,7 @@
 import UIKit
 import Persei
 
-class ViewController: UITableViewController {
+class TableViewController: UITableViewController {
     
     @IBOutlet fileprivate weak var imageView: UIImageView!
     fileprivate var menu: MenuView!
@@ -65,7 +65,7 @@ class ViewController: UITableViewController {
 
 // MARK: - MenuViewDelegate
 
-extension ViewController: MenuViewDelegate {
+extension TableViewController: MenuViewDelegate {
     
     func menu(_ menu: MenuView, didSelectItemAt index: Int) {
         model = model.next()
