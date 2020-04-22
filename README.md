@@ -19,7 +19,8 @@ Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-
 | 1.x | 1.1 |
 | 2.x | 2.0 |
 | 3.x | 3.0 |
-| **4.x** | **3.1** |
+| 4.x | 3.1|
+| **5.x** | **4.0** |
 
 ## Installation
 
@@ -28,13 +29,13 @@ Check this [project on Behance](https://www.behance.net/gallery/20411445/Mobile-
 ```ruby
 use_frameworks!
 
-pod 'Persei', '~> 3.0'
+pod 'Persei', '~> 4.0'
 ```
 
 ### [Carthage](http://github.com/Carthage/Carthage)
 
 ```ruby
-github "Yalantis/Persei" ~> 3.0
+github "Yalantis/Persei" ~> 4.0
 ```
 
 ### Manual Installation

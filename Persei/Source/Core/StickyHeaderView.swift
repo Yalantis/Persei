@@ -8,6 +8,7 @@ private let DefaultContentHeight: CGFloat = 64
 open class StickyHeaderView: UIView {
     
     // MARK: - Init
+    
     func commonInit() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -35,6 +36,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - View lifecycle
+    
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
@@ -55,7 +57,7 @@ open class StickyHeaderView: UIView {
             view.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), options: [.initial, .new], context: &ContentOffsetContext)
             view.panGestureRecognizer.addTarget(self, action: #selector(StickyHeaderView.handlePan))
             view.sendSubviewToBack(self)
-					
+            
             if needRevealed && !insetsApplied {
                 addInsets()
             } else if insetsApplied {
@@ -113,9 +115,17 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ScrollView
-    private var scrollView: UIScrollView { return superview as! UIScrollView }
+
+    private var scrollView: UIScrollView {
+        guard
+            let scrollView = superview as? UIScrollView
+            else { fatalError("superview is not UIScrollView") }
+        
+        return scrollView
+    }
     
     // MARK: - KVO
+    
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if context == &ContentOffsetContext {
             didScroll()
@@ -171,6 +181,7 @@ open class StickyHeaderView: UIView {
     }
 
     // MARK: - Applyied Insets
+    
     private var appliedInsets: UIEdgeInsets = .zero
     private var insetsApplied: Bool {
         return appliedInsets != .zero
@@ -195,6 +206,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - ContentHeight
+    
     @IBInspectable open var contentHeight: CGFloat = DefaultContentHeight {
         didSet {
             if superview != nil {
@@ -204,9 +216,11 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - Threshold
+    
     @IBInspectable open var threshold: CGFloat = 0.3
     
     // MARK: - Content Offset Hanlding
+    
     private func applyContentContainerTransform(_ progress: CGFloat) {
         var transform = CATransform3DIdentity
         transform.m34 = -1 / 500
@@ -245,6 +259,7 @@ open class StickyHeaderView: UIView {
     }
     
     // MARK: - Layout
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -275,13 +290,9 @@ open class StickyHeaderView: UIView {
     }
     
     open override func sizeThatFits(_: CGSize) -> CGSize {
-        var height: CGFloat = 0
-        if revealed {
-            height = appliedInsets.top - scrollView.normalizedContentOffset.y
-        } else {
-            height = scrollView.normalizedContentOffset.y * -1
-        }
-
+        let revealedHeight: CGFloat = appliedInsets.top - scrollView.normalizedContentOffset.y
+        let collapsedHeight: CGFloat = scrollView.normalizedContentOffset.y * -1
+        let height: CGFloat = revealed ? revealedHeight : collapsedHeight
         let output = CGSize(width: scrollView.bounds.width, height: max(height, 0))
         
         return output
